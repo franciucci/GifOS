@@ -1,0 +1,137 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+/* Navbar styles */
+.navbar__icons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 10px 20px;
+}
+
+.navlinks {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  height: 100vh;
+  width: 100vw;
+  z-index: 3;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #572ee5;
+  opacity: 0.9;
+  position: absolute;
+  -webkit-animation-name: showmenu;
+          animation-name: showmenu;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+  -webkit-animation-timing-function: ease-out;
+          animation-timing-function: ease-out;
+}
+
+.navlinks__list {
+  list-style: none;
+  margin-top: 2.9%;
+}
+
+.navlinks__list__link {
+  line-height: 3.75rem;
+  position: relative;
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.navlinks__list__link .borders-actives {
+  display: block;
+  border-top: 2px solid lightgrey;
+  opacity: 0.4;
+  width: 30%;
+  margin: 0 auto;
+}
+
+.menu-hide {
+  display: none;
+}
+
+@-webkit-keyframes showmenu {
+  from {
+    height: 0;
+  }
+  to {
+    height: 100vh;
+  }
+}
+
+@keyframes showmenu {
+  from {
+    height: 0;
+  }
+  to {
+    height: 100vh;
+  }
+}
+
+.hero {
+  margin: 15px 11.7% 0 11.7%;
+}
+
+.hero__text {
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.5625rem;
+  font-weight: 600;
+  line-height: 2.0625rem;
+  color: #572ee5;
+}
+
+.hero__text__gifos {
+  color: #50e3c2;
+}
+
+.hero #hero-img {
+  display: block;
+  margin: 20px auto 0 auto;
+  max-width: 273px;
+  max-height: 130px;
+  margin: 0 auto;
+}
+
+.search-bar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 0;
+  position: relative;
+}
+
+.search-bar #search-bar {
+  border: 1px solid #572ee5;
+  border-radius: 27px;
+  width: 80%;
+  padding: 1.2% 14.7%;
+}
+
+.search-bar #search-icon {
+  position: absolute;
+  right: 15%;
+  top: 15%;
+}
+/*# sourceMappingURL=styles.css.map */

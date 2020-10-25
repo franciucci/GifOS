@@ -4,16 +4,80 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GIFOS</title>
-    <link rel="stylesheet" href="styles.css" type="text/css" />
+    <link rel="stylesheet" href="styles/styles.css" type="text/css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap"
       rel="stylesheet"
     />
   </head>
   <body>
+    <!-- HERE STARTS THE HEADER THAT CONTAINS THE NAVBAR -->
     <header class="header">
-      <nav class="navbar"></nav>
+      <nav class="navbar">
+        <div class="navbar__icons">
+          <img
+            src="assets/mobile/logo-mobile.svg"
+            alt="logo-mobile"
+            id="logo-mobile"
+          />
+          <img src="assets/mobile/burger.svg" alt="burger-menu" id="burger" />
+        </div>
+        <div class="navlinks menu-hide" id="navlinks">
+          <ul class="navlinks__list">
+            <li class="navlinks__list__link">
+              Modo Nocturno
+              <span class="links-border"></span>
+            </li>
+            <li class="navlinks__list__link">
+              Favoritos
+              <span class="links-border"></span>
+            </li>
+            <li class="navlinks__list__link">
+              Mis GIFOS
+              <span class="links-border"></span>
+            </li>
+          </ul>
+        </div>
+      </nav>
     </header>
-    <script src="main.js"></script>
+    <!-- FINISH HEADER -->
+    <main class="main">
+      <!-- THIS STARTS HERO SECTION -->
+      <section class="hero">
+        <h1 class="hero__text">
+          Inspírate, busca, guarda, y crea los mejores
+          <span class="hero__text__gifos">GIFOS</span>
+        </h1>
+        <img
+          src="assets/mobile/ilustra_header.svg"
+          alt="hero-image"
+          id="hero-img"
+        />
+      </section>
+      <!-- FINISH HERO SECTION -->
+      <!-- STARTS SEARCH BAR SECTION -->
+      <section class="search-bar">
+        <input
+          type="text"
+          name="search-bar"
+          id="search-bar"
+          placeholder="Busca GIFOS y más"
+        />
+        <img
+          src="assets/mobile/icon-search.svg"
+          alt="search icon"
+          id="search-icon"
+        />
+      </section>
+      <!-- FINISH SEARCH BAR SECTION -->
+      <!-- STARTS TRENDING SECTION -->
+      <section class="trending">
+        <h2 class="trending__title">Trending:</h2>
+        <p class="trending__text">
+          Reactions, Entertainment, Sports, Stickers, Artist
+        </p>
+      </section>
+    </main>
+    <script src="script/main.js"></script>
   </body>
 </html>
