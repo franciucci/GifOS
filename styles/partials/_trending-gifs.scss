@@ -1,0 +1,33 @@
+@import "variables";
+.trending-gifs {
+  background-color: $background-color;
+  margin-top: 3.7%;
+  padding: 3.8% 0 6.8%;
+  &__title {
+    font-family: $title_font;
+    color: $main_color;
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.875rem;
+    text-align: center;
+    padding: 3.8% 0 0.6%;
+  }
+  &__text {
+    font-family: $text_font;
+    color: #000000;
+    text-align: center;
+    line-height: 1.4375rem;
+    margin: 0.6% 5.6% 2.7%;
+    &__blockText {
+      display: block;
+    }
+  }
+  .carrusel {
+    width: 64.8%;
+    height: 187px;
+    background-color: lightgrey;
+    margin: 15px;
+    text-align: center;
+    line-height: 187px;
+  }
+}
