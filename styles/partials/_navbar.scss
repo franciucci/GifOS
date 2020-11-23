@@ -1,4 +1,11 @@
 /* Navbar styles */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: white;
+  z-index: 3;
+}
 .navbar__icons {
   display: flex;
   justify-content: space-between;

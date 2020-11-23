@@ -1,0 +1,26 @@
+@import "variables";
+
+.miGifos {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  &__title {
+    margin-top: 0.4%;
+    font-family: $title_font;
+    color: $main_color;
+    font-weight: bold;
+    font-size: 1.25rem;
+    line-height: 1.875rem;
+  }
+  &__gifs {
+    padding: 1.6%;
+    margin: 2.4%;
+    width: 9.75rem;
+    height: 7.5rem;
+    background-color: lightgrey;
+    text-align: center;
+  }
+  &__btn {
+    @extend %btn;
+  }
+}

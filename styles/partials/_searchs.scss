@@ -1,0 +1,32 @@
+@import "variables";
+
+.searchs {
+  margin-top: 2.5rem;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  &__top-border {
+    border: 1px solid $borders_color;
+    background-color: $borders_color;
+    opacity: 0.5;
+    width: 40%;
+    margin: 1.8% auto;
+  }
+  &__title {
+    padding: 1.8% 0 1.6%;
+    font-family: $title_font;
+    color: $main_color;
+    font-size: 1.5625rem;
+  }
+  &__gifs {
+    padding: 1.6%;
+    margin: 0 5.6% 3.3%;
+    width: 9.75rem;
+    height: 7.5rem;
+    background-color: lightgrey;
+    text-align: center;
+  }
+  &__btn {
+    @extend %btn;
+  }
+}

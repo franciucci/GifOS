@@ -1,0 +1,24 @@
+@import "variables";
+
+.favourites {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  &__title {
+    padding: 0.4%;
+    font-family: $title_font;
+    color: $main_color;
+    font-size: 1.25rem;
+  }
+  &__gifs {
+    padding: 1.6%;
+    margin: 2.4%;
+    width: 9.75rem;
+    height: 7.5rem;
+    background-color: lightgrey;
+    text-align: center;
+  }
+  &__btn {
+    @extend %btn;
+  }
+}
