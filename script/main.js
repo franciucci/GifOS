@@ -14,10 +14,10 @@ function showMenu() {
 }
 // This function switches between the burger menu icon and the button close icon
 function changeBurgerMenu() {
-    if (burgerMenu.src === "./assets/mobile/burger.svg") {
-        burgerMenu.src = "./assets/mobile/button-close.svg"
+    if (burgerMenu.src === "http://127.0.0.1:5500/assets/mobile/burger.svg") {
+        burgerMenu.src = "http://127.0.0.1:5500/assets/mobile/button-close.svg"
     } else {
-        burgerMenu.src = "assets/mobile/burger.svg"
+        burgerMenu.src = "http://127.0.0.1:5500/assets/mobile/burger.svg"
     }
 }
 
