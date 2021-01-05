@@ -23,6 +23,10 @@
   scroll-behavior: smooth;
 }
 
+.hidden {
+  display: none;
+}
+
 /* variables */
 /* btn style */
 .searchs__btn, .favourites__btn, .miGifos__btn {
@@ -76,8 +80,8 @@
   background-color: #572ee5;
   opacity: 0.9;
   position: absolute;
-  -webkit-animation-name: showmenu;
-          animation-name: showmenu;
+  -webkit-animation-name: showMenu;
+          animation-name: showMenu;
   -webkit-animation-duration: 0.5s;
           animation-duration: 0.5s;
   -webkit-animation-timing-function: ease-out;
@@ -110,7 +114,7 @@
   display: none;
 }
 
-@-webkit-keyframes showmenu {
+@-webkit-keyframes showMenu {
   from {
     height: 0;
   }
@@ -119,7 +123,7 @@
   }
 }
 
-@keyframes showmenu {
+@keyframes showMenu {
   from {
     height: 0;
   }
@@ -154,30 +158,59 @@
   margin: 0 auto;
 }
 
-.search-bar {
+.search-bar, .searchActive {
+  margin: 0 auto;
+  width: 80%;
+  border: 1px solid #572ee5;
+  border-radius: 27px;
+}
+
+.search-bar__input {
+  padding: 1.2% 2% 1.2% 2%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   margin-top: 0;
-  position: relative;
 }
 
-.search-bar #search-bar {
-  border: 1px solid #572ee5;
-  border-radius: 27px;
-  width: 80%;
-  padding: 1.2% 14.7% 1.2% 2%;
+.search-bar__input #search-input {
+  padding: 0 3%;
+  width: 90%;
+  border: none;
   outline: none;
 }
 
-.search-bar #search-icon {
-  height: 60%;
-  position: absolute;
-  right: 15%;
-  top: 20%;
+.search-bar__input #search-icon-active {
+  height: 16px;
+}
+
+.search-bar__suggestion {
+  margin: 0 auto;
+  padding: 0 5%;
+}
+
+.search-bar__suggestion__list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.search-bar__suggestion__list li {
+  font-family: "Roboto", sans-serif;
+  font-size: 0.875rem;
+  color: gray;
+}
+
+.search-bar__suggestion__list li #searchList-icon {
+  height: 12px;
+  fill: grey;
+}
+
+.searchActive {
+  border-radius: 10px;
 }
 
 /* variables */
@@ -260,7 +293,7 @@
   display: block;
 }
 
-.trending-gifs .carrusel {
+.trending-gifs .carousel {
   width: 64.8%;
   height: 187px;
   background-color: lightgrey;

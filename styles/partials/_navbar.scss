@@ -21,7 +21,7 @@
   background-color: #572ee5;
   opacity: 0.9;
   position: absolute;
-  animation-name: showmenu;
+  animation-name: showMenu;
   animation-duration: 0.5s;
   animation-timing-function: ease-out;
   &__list {
@@ -49,7 +49,7 @@
 .menu-hide {
   display: none;
 }
-@keyframes showmenu {
+@keyframes showMenu {
   from {
     height: 0;
   }

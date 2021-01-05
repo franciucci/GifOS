@@ -24,6 +24,12 @@
       integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
       crossorigin="anonymous"
     />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+      integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
+      crossorigin="anonymous"
+    />
   </head>
   <body>
     <!-- HERE STARTS THE HEADER THAT CONTAINS THE NAVBAR -->
@@ -35,7 +41,11 @@
             alt="logo-mobile"
             id="logo-mobile"
           />
-          <img src="assets/mobile/burger.svg" alt="burger-menu" id="burger" />
+          <img
+            src="https://gif-os.netlify.app/assets/mobile/burger.svg"
+            alt="burger-menu"
+            id="burger"
+          />
         </div>
         <div class="navlinks menu-hide" id="navlinks">
           <ul class="navlinks__list">
@@ -56,6 +66,8 @@
       </nav>
     </header>
     <!-- FINISH HEADER -->
+
+    <!-- HERE STARTS THE MAIN SECTION -->
     <main class="main">
       <!-- THIS STARTS HERO SECTION -->
       <section class="hero">
@@ -70,38 +82,59 @@
         />
       </section>
       <!-- FINISH HERO SECTION -->
+
       <!-- STARTS SEARCH BAR SECTION -->
-      <section class="search-bar">
-        <input
-          type="text"
-          name="search-bar"
-          id="search-bar"
-          placeholder="Busca GIFOS y más"
-        />
-        <img
-          src="assets/mobile/icon-search.svg"
-          alt="search icon"
-          id="search-icon"
-        />
+      <section>
+        <div class="search-bar" id="search-bar">
+          <div class="search-bar__input">
+            <img
+              src="assets/mobile/icon-search.svg"
+              alt="search icon"
+              id="search-icon-active"
+              class="hidden"
+            />
+            <input
+              type="text"
+              name="search-input"
+              id="search-input"
+              placeholder="Busca GIFOS y más"
+            />
+            <img
+              src="assets/mobile/icon-search.svg"
+              alt="search icon"
+              id="search-icon"
+            />
+            <img
+              src="assets/mobile/close.svg"
+              alt="close search icon"
+              id="close-search-icon"
+              class="hidden"
+            />
+          </div>
+          <div class="search-bar__suggestion hidden" id="suggestion">
+            <ul class="search-bar__suggestion__list" id="suggestion-list"></ul>
+          </div>
+        </div>
       </section>
       <!-- FINISH SEARCH BAR SECTION -->
+
       <!-- STARTS TRENDING SEARCHS SECTION -->
       <section class="trending-searchs">
         <h2 class="trending-searchs__title">Trending:</h2>
-        <p class="trending-searchs__text">
-          Reactions, Entertainment, Sports, Stickers, Artist
-        </p>
+        <p class="trending-searchs__text" id="trending-searchs__text"></p>
       </section>
       <!-- FINISH TRENDING SEARCHS -->
+
       <!-- STARTS SEARCH PAGE -->
       <!-- This page will be hidden and will be controled with JS -->
-      <section class="searchs searchs-hidden">
+      <section class="searchs hidden">
         <div class="searchs__top-border"></div>
         <h2 class="searchs__title">Placeholder</h2>
         <div class="searchs__gifs">Searchs placeholders</div>
         <button class="searchs__btn">VER MÁS</button>
       </section>
       <!-- FINISH SEARCH PAGE -->
+
       <!-- STARTS FAVOURITE SECTION -->
       <section class="favourites">
         <img
@@ -114,6 +147,7 @@
         <button class="favourites__btn">VER MÁS</button>
       </section>
       <!-- FINISH FAVOURITE SECTION -->
+
       <!-- STARTS MI GIFOS SECTION -->
       <section class="miGifos">
         <img src="assets/mobile/icon-mis-gifos.svg" alt="mi gifos icon" />
@@ -122,6 +156,7 @@
         <button class="miGifos__btn">VER MÁS</button>
       </section>
       <!-- FINISH MI GIFOS SECTION -->
+
       <!-- STARTS TRENDING GIFS SECTION -->
       <section class="trending-gifs">
         <h2 class="trending-gifs__title">Trending GIFOS</h2>
@@ -130,9 +165,18 @@
             GIFOS de nuestra comunidad</span
           >
         </p>
-        <div class="carrusel">Carrusel Placeholder</div>
+        <div class="carousel" id="carousel">
+          <button class="carousel-arrow carousel-prev" id="button-prev">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <div class="carousel-track" id="track"></div>
+          <button class="carousel-arrow carousel-next" id="button-next">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
       </section>
       <!-- FINISH TRENDING GIFS -->
+
       <!-- STARTS SOCIAL FOOTER -->
       <footer class="social">
         <h2 class="social__title">Compartir en:</h2>
@@ -145,6 +189,9 @@
       </footer>
       <!-- FINISH SOCIAL FOOTER -->
     </main>
+
+    <!-- SCRIPTS -->
+    <script src="script/variables.js"></script>
     <script src="script/main.js"></script>
   </body>
 </html>
