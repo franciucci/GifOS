@@ -44,10 +44,11 @@ getTrendingTags();
 
 /* ******** SEARCH BAR ********** */
 
-$searchInput.addEventListener("focus", setActiveSearch);
-$searchInput.addEventListener("input", showSearchSuggestions);
-$searchInput.addEventListener("input", cleanSearchSuggestions);
-$searchInput.addEventListener("focusout", setInactiveSearch);
+/* Reset search bar to initial state */
+function resetSearch() {
+    $searchInput.value = "";
+    setInactiveSearch();
+}
 
 /* Sets active search bar */
 function setActiveSearch() {
@@ -62,9 +63,11 @@ function setActiveSearch() {
 function setInactiveSearch() {
     $searchSuggestions.classList.add("hidden");
     $searchBar.classList.remove("searchActive");
-    $searchIcon.classList.remove("hidden");
-    $closeSearchIcon.classList.add("hidden");
-    $searchIconActive.classList.add("hidden");
+    if ($searchInput.value == "") {
+        $searchIcon.classList.remove("hidden");
+        $closeSearchIcon.classList.add("hidden");
+        $searchIconActive.classList.add("hidden");
+    }
 }
 
 /* Resets list of search suggestions */
@@ -72,29 +75,42 @@ function cleanSearchSuggestions() {
     $searchSuggestions.classList.add("hidden");
     $searchSuggestionList.innerHTML = "";
 }
-//Request to Giphy API to autocomplete search suggestions
-async function showSearchSuggestions(e) {
+
+// Request to Giphy API to autocomplete search suggestions
+async function showSearchSuggestions() {
     cleanSearchSuggestions();
-    let inputValue = e.target.value;
-    const url = `${searchAutocompleteEndpoint}?api_key=${apiKey}&q=${inputValue}&limit=5`;
+    let inputValue = $searchInput.value;
+    const url = `${searchAutocompleteEndpoint}?api_key=${apiKey}&q=${inputValue}&limit=4`;
     await fetch(url)
         .then(response => response.json())
         .then(result => {
-            for (let i=0; i < result.data.length; i++) {
-                const li = document.createElement("li");
-                $searchSuggestionList.appendChild(li);
-                li.innerHTML = `<img
-                src="assets/mobile/icon-search.svg"
-                alt="search icon"
-                id="searchList-icon"
-                onload="SVGInject(this)"
-              /> ${result.data[i].name}`
-            }
+            displaySuggestionList(result);
         })
-        .catch(err => console.log(err.message))
-        setActiveSearch();
+        .catch(err => console.log(err))
+    $searchSuggestions.classList.remove("hidden");
+    $searchBar.classList.add("searchActive");
 }
 
+function displaySuggestionList(suggestions) {
+    for (let i = 0; i < suggestions.data.length; i++) {
+        const li = document.createElement("li");
+        li.innerHTML = `
+        <img class="searchList-icon" src="assets/mobile/icon-search-grey.svg" alt="search icon">
+        <span class="suggestion" onclick="searchGifs('${suggestions.data[i].name}')">${suggestions.data[i].name}</span>`;
+        $searchSuggestionList.appendChild(li);
+    }
+}
+
+function searchGifs(result) {
+    $searchInput.value = (result);
+    console.log(result);
+}
+
+$searchInput.addEventListener("focus", setActiveSearch);
+$searchInput.addEventListener("input", showSearchSuggestions);
+$searchInput.addEventListener("input", cleanSearchSuggestions);
+$searchInput.addEventListener("focusout", setInactiveSearch);
+$closeSearchIcon.addEventListener("click", resetSearch);
 
 
 

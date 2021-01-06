@@ -177,10 +177,15 @@
 }
 
 .search-bar__input #search-input {
-  padding: 0 3%;
-  width: 90%;
+  padding: 0 2%;
+  width: 100%;
   border: none;
   outline: none;
+}
+
+.search-bar__input #search-icon,
+.search-bar__input #close-search-icon {
+  cursor: pointer;
 }
 
 .search-bar__input #search-icon-active {
@@ -192,9 +197,15 @@
   padding: 0 5%;
 }
 
+.search-bar__suggestion__border {
+  width: 100%;
+  border-top: 1px solid gray;
+  margin-bottom: 2px;
+}
+
 .search-bar__suggestion__list {
   list-style-type: none;
-  margin: 0;
+  margin: 4px 0;
   padding: 0;
 }
 
@@ -204,9 +215,9 @@
   color: gray;
 }
 
-.search-bar__suggestion__list li #searchList-icon {
+.search-bar__suggestion__list li .searchList-icon {
+  margin: 0 2px;
   height: 12px;
-  fill: grey;
 }
 
 .searchActive {
