@@ -26,3 +26,9 @@ const $searchIconActive = document.getElementById("search-icon-active");
 const $searchListIcon = document.getElementById("searchList-icon");
 const $searchIcon = document.getElementById("search-icon");
 const $closeSearchIcon = document.getElementById("close-search-icon");
+
+// Trend carousel
+const $trendingCarousel = document.getElementById("trending-carousel");
+const $trendingTrack = document.getElementById("track");
+const $nextBtn = document.getElementById("btn-next");
+const $prevBtn = document.getElementById("btn-prev");

@@ -4,7 +4,7 @@
   top: 0;
   width: 100%;
   background-color: white;
-  z-index: 3;
+  z-index: 1000;
 }
 .navbar__icons {
   display: flex;
@@ -16,7 +16,7 @@
   flex-flow: column nowrap;
   height: 90vh;
   width: 100%;
-  z-index: 3;
+  z-index: 1000;
   align-items: center;
   background-color: #572ee5;
   opacity: 0.9;

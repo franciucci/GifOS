@@ -18,18 +18,6 @@
       href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
       rel="stylesheet"
     />
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
-      integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
-      integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
-      crossorigin="anonymous"
-    />
   </head>
   <body>
     <!-- HERE STARTS THE HEADER THAT CONTAINS THE NAVBAR -->
@@ -120,12 +108,12 @@
       </section>
       <!-- FINISH SEARCH BAR SECTION -->
 
-      <!-- STARTS TRENDING SEARCHS SECTION -->
+      <!-- STARTS TRENDING TAGS SECTION -->
       <section class="trending-searchs">
         <h2 class="trending-searchs__title">Trending:</h2>
         <p class="trending-searchs__text" id="trending-searchs__text"></p>
       </section>
-      <!-- FINISH TRENDING SEARCHS -->
+      <!-- FINISH TRENDING TAGS -->
 
       <!-- STARTS SEARCH PAGE -->
       <!-- This page will be hidden and will be controled with JS -->
@@ -167,14 +155,22 @@
             GIFOS de nuestra comunidad</span
           >
         </p>
-        <div class="carousel" id="carousel">
-          <button class="carousel-arrow carousel-prev" id="button-prev">
-            <i class="fas fa-chevron-left"></i>
-          </button>
+        <div class="trending-gifs__carousel" id="trending-carousel">
+          <div class="btn-carousel" id="btn-prev">
+            <img
+              src="./assets/mobile/button-left.svg"
+              alt="carousel button left"
+              class="btnImg-carousel"
+            />
+          </div>
           <div class="carousel-track" id="track"></div>
-          <button class="carousel-arrow carousel-next" id="button-next">
-            <i class="fas fa-chevron-right"></i>
-          </button>
+          <div class="btn-carousel" id="btn-next">
+            <img
+              src="./assets/mobile/button-right.svg"
+              alt="carousel button left"
+              class="btnImg-carousel"
+            />
+          </div>
         </div>
       </section>
       <!-- FINISH TRENDING GIFS -->

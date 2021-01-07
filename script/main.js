@@ -37,7 +37,7 @@ async function getTrendingTags() {
             const newText = trendingTagsCapitalize.toString().split(",").join(", ");
             $trendingSearchTags.textContent = newText;
         })
-        .catch(err => console.log(err.message));
+        .catch(err => console.log(err));
 }
 
 getTrendingTags();
@@ -106,45 +106,61 @@ function searchGifs(search) {
 
 $searchInput.addEventListener("focus", setActiveSearch);
 $searchInput.addEventListener("input", showSearchSuggestions);
-$searchInput.addEventListener("input", cleanSearchSuggestions);
 $searchInput.addEventListener("focusout", setInactiveSearch);
 $closeSearchIcon.addEventListener("click", resetSearch);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* ********* TRENDING CAROUSEL HOME *********** */
 
 // Request to Giphy API to show trending gifs
-/* const url = `https://api.giphy.com/v1/gifs/trending?api_key=${apiKey}&limit=20&rating=pg`;
+const url = `https://api.giphy.com/v1/gifs/trending?api_key=${apiKey}&limit=10&rating=pg`;
 
-fetch(url).then(response => response.json())
-    .then(json => {
-        let carousel = document.getElementById("track");
-        for (let i=0; i < json.data.length; i++) {
-            let slick = document.createElement("div");
-            slick.setAttribute("class", "slick");
-            carousel.appendChild(slick);
-            let slickGif = document.createElement("img");
-            slickGif.setAttribute("src", json.data[i].images.fixed_height.url);
-            slickGif.setAttribute("alt", json.data[i].title);
-            slick.appendChild(slickGif);
-        }    
+async function getTrendingGifs() {
+    await fetch(url).then(response => response.json())
+        .then(results => {      
+            for (let i=0; i < results.data.length; i++) {
+                showTrendingGifs(results.data[i], i);
+            }    
+        })
+        .catch(err => console.log(err))
+}
+
+// Shows a carousel of trending gifs
+function showTrendingGifs(json, i) {
+    const gifCard = document.createElement("div");
+    gifCard.setAttribute("class", "gifCard");
+    gifCard.setAttribute("id", `gif${i}`);  
+    gifCard.innerHTML = `
+    <img class="gifCard__gif" src="${json.images.fixed_height.url}" alt="${json.title}" data-name="${json.title}" data-user="${json.username}">`;
+    $trendingTrack.appendChild(gifCard);
+
+    const gifHover = document.createElement("div");
+    gifHover.setAttribute("class", "gifHover hidden");
+    gifHover.setAttribute("id", `gifHover${i}`)
+    gifHover.innerHTML= `<div class="gifHover__icons"><img class="gif-icons" src="assets/mobile/icon-fav-hover.svg" alt="icon fav"><img class="gif-icons" src="assets/mobile/icon-download.svg" alt="icon download"><img class="gif-icons" src="assets/mobile/icon-max.svg" alt="icon max"></div><div class="gifHover__textBox"><p class="gifHover__textBox__text">${json.username}</p>
+    <p class="gifHover__textBox__text">${json.title}</p></div>`;
+    gifCard.appendChild(gifHover);
+    gifCard.addEventListener("mouseover", () => {
+        let hoverOn = document.getElementById(`gifHover${i}`);
+        hoverOn.classList.remove("hidden");
     })
-    .catch(err => console.log(err.message)) */
+    gifCard.addEventListener("mouseout", () => {
+        let hoverOut = document.getElementById(`gifHover${i}`);
+        hoverOut.classList.add("hidden");
+    })
+    
+}
+getTrendingGifs();
+addScrollToCarousel();
+
+// Add scroll behaviour to carousel buttons for desktop resolutions
+function addScrollToCarousel() {
+    $prevBtn.addEventListener("click", scrollToPrevItem);
+    $nextBtn.addEventListener("click", scrollToNextItem)
+}
+
+function scrollToNextItem() {
+    $trendingTrack.scrollLeft += 300;
+}
+function scrollToPrevItem() {
+    $trendingTrack.scrollLeft -= 300;
+}
