@@ -84,32 +84,29 @@ async function showSearchSuggestions() {
     await fetch(url)
         .then(response => response.json())
         .then(result => {
-            displaySuggestionList(result);
+            let spanArray = [];
+            for (let i = 0; i < result.data.length; i++) {
+                const li = document.createElement("li");
+                li.setAttribute("onclick", `searchGifs('${result.data[i].name}')`);
+                li.innerHTML = `
+                <img class="searchList-icon" src="assets/mobile/icon-search-grey.svg" alt="search icon">
+                <span id="suggestion-${i}">${result.data[i].name}</span>`;
+                $searchSuggestionList.appendChild(li);
+            }
         })
         .catch(err => console.log(err))
     $searchSuggestions.classList.remove("hidden");
     $searchBar.classList.add("searchActive");
 }
 
-function displaySuggestionList(suggestions) {
-    for (let i = 0; i < suggestions.data.length; i++) {
-        const li = document.createElement("li");
-        li.innerHTML = `
-        <img class="searchList-icon" src="assets/mobile/icon-search-grey.svg" alt="search icon">
-        <span class="suggestion" onclick="searchGifs('${suggestions.data[i].name}')">${suggestions.data[i].name}</span>`;
-        $searchSuggestionList.appendChild(li);
-    }
-}
-
-function searchGifs(result) {
-    $searchInput.value = (result);
-    console.log(result);
+function searchGifs(search) {
+    $searchInput.value = search;
+    console.log(search) 
 }
 
 $searchInput.addEventListener("focus", setActiveSearch);
 $searchInput.addEventListener("input", showSearchSuggestions);
 $searchInput.addEventListener("input", cleanSearchSuggestions);
-$searchInput.addEventListener("focusout", setInactiveSearch);
 $closeSearchIcon.addEventListener("click", resetSearch);
 
 
