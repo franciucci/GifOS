@@ -87,7 +87,7 @@ async function showSearchSuggestions() {
             let spanArray = [];
             for (let i = 0; i < result.data.length; i++) {
                 const li = document.createElement("li");
-                li.setAttribute("onclick", `searchGifs('${result.data[i].name}')`);
+                li.setAttribute("onmousedown", `searchGifs('${result.data[i].name}')`);
                 li.innerHTML = `
                 <img class="searchList-icon" src="assets/mobile/icon-search-grey.svg" alt="search icon">
                 <span id="suggestion-${i}">${result.data[i].name}</span>`;
@@ -107,6 +107,7 @@ function searchGifs(search) {
 $searchInput.addEventListener("focus", setActiveSearch);
 $searchInput.addEventListener("input", showSearchSuggestions);
 $searchInput.addEventListener("input", cleanSearchSuggestions);
+$searchInput.addEventListener("focusout", setInactiveSearch);
 $closeSearchIcon.addEventListener("click", resetSearch);
 
 
