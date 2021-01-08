@@ -2,59 +2,64 @@
 @import "variables";
 
 .maximized-container {
-  background-color: rgba(255, 255, 255, 0.9);
-  display: flex;
-  justify-content: center;
-  position: fixed;
-  z-index: 3000;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
+	background-color: rgba(255, 255, 255, 0.9);
+	display: flex;
+	justify-content: center;
+	position: fixed;
+	z-index: 3000;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
 }
 .maximizedGifs {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  &__gif {
-    margin: 0 auto;
-    .maxGif {
-      display: block;
-      margin: 0 auto;
-      max-width: 80%;
-      @media screen and (min-width: 992px) {
-        max-width: 100%;
-      }
-    }
-  }
-  &__close {
-    padding: 0.625rem;
-    display: flex;
-    justify-content: flex-end;
-    cursor: pointer;
-  }
-  &__icons {
-    padding-top: 0.625rem;
-    width: 80%;
-    display: flex;
-    justify-content: space-between;
-    margin: 0 auto;
-    @media screen and (min-width: 992px) {
-      width: 100%;
-    }
-    .maxGif-icons {
-      max-width: 20%;
-      img {
-        padding: 0 5px;
-      }
-    }
-    .maxGif-data {
-      max-width: 80%;
-    }
-  }
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	&__gif {
+		margin: 0 auto;
+		.maxGif {
+			display: block;
+			margin: 0 auto;
+			max-width: 80%;
+			@media screen and (min-width: 992px) {
+				max-width: 100%;
+			}
+		}
+	}
+	&__close {
+		display: flex;
+		justify-content: flex-end;
+		cursor: pointer;
+		width: 80%;
+		margin: 0 auto;
+		padding: 0.625rem;
+		@media screen and (min-width: 990px) {
+			width: 100%;
+		}
+	}
+	&__icons {
+		padding-top: 0.625rem;
+		width: 80%;
+		display: flex;
+		justify-content: space-between;
+		margin: 0 auto;
+		@media screen and (min-width: 992px) {
+			width: 100%;
+		}
+		.maxGif-icons {
+			max-width: 30%;
+			img {
+				padding: 0 5px;
+			}
+		}
+		.maxGif-data {
+			max-width: 70%;
+		}
+	}
 }
 #maxGif-title,
 #maxGif-user {
-  font-family: $text_font;
-  font-size: 1rem;
+	font-family: $text_font;
+	font-size: 1rem;
 }
