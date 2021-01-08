@@ -130,27 +130,35 @@ function showTrendingGifs(json, i) {
     gifCard.setAttribute("class", "gifCard");
     gifCard.setAttribute("id", `gif${i}`);  
     gifCard.innerHTML = `
-    <img class="gifCard__gif" src="${json.images.fixed_height.url}" alt="${json.title}" data-name="${json.title}" data-user="${json.username}">`;
+    <img class="gifCard__gif" src="${json.images.original.url}" alt="${json.title}" data-name="${json.title}" data-user="${json.username}">`;
     $trendingTrack.appendChild(gifCard);
 
     const gifHover = document.createElement("div");
     gifHover.setAttribute("class", "gifHover hidden");
     gifHover.setAttribute("id", `gifHover${i}`)
-    gifHover.innerHTML= `<div class="gifHover__icons"><img class="gif-icons" src="assets/mobile/icon-fav-hover.svg" alt="icon fav"><img class="gif-icons" src="assets/mobile/icon-download.svg" alt="icon download"><img class="gif-icons" src="assets/mobile/icon-max.svg" alt="icon max"></div><div class="gifHover__textBox"><p class="gifHover__textBox__text">${json.username}</p>
+    gifHover.innerHTML= `<div class="gifHover__icons"><img class="gif-icons" src="assets/mobile/icon-fav-hover.svg" alt="icon fav"><img class="gif-icons" src="assets/mobile/icon-download.svg" alt="icon download"><img class="gif-icons" id="max-${i}" src="assets/mobile/icon-max.svg" alt="icon max"></div><div class="gifHover__textBox"><p class="gifHover__textBox__text">${json.username}</p>
     <p class="gifHover__textBox__text">${json.title}</p></div>`;
     gifCard.appendChild(gifHover);
+    let maxIcon = document.getElementById(`max-${i}`);
+    maxIcon.setAttribute("onclick", `maximizeGif('${json.images.original.url}', '${json.username}', '${json.title}')`);
     gifCard.addEventListener("mouseover", () => {
+        if (window.innerWidth > 990) {
         let hoverOn = document.getElementById(`gifHover${i}`);
         hoverOn.classList.remove("hidden");
+    } else {
+        maximizeGif(json.images.original.url, json.username, json.title);
+    }
     })
     gifCard.addEventListener("mouseout", () => {
         let hoverOut = document.getElementById(`gifHover${i}`);
         hoverOut.classList.add("hidden");
     })
+
     
 }
 getTrendingGifs();
 addScrollToCarousel();
+$maxGifBtnClose.addEventListener("click", closeMax);
 
 // Add scroll behaviour to carousel buttons for desktop resolutions
 function addScrollToCarousel() {
@@ -159,8 +167,31 @@ function addScrollToCarousel() {
 }
 
 function scrollToNextItem() {
-    $trendingTrack.scrollLeft += 300;
+    $trendingTrack.scrollLeft += 210;
 }
 function scrollToPrevItem() {
-    $trendingTrack.scrollLeft -= 300;
+    $trendingTrack.scrollLeft -= 210;
+}
+
+
+/* ***** MAXIMIZE GIF ****** */
+//Maximize Gif
+function maximizeGif(src, user, title) {
+    $maxGifContainer.innerHTML = `
+    <img class="maxGif" src="${src}" alt="${title}">
+    `;
+    $maxGifSection.classList.add("maximized-container")
+    $maxGifSection.classList.remove("hidden");
+    $maxGifCloseContainer.classList.remove("hidden");
+    $maxGifIcons.classList.remove("hidden");
+    $maxGifTitle.textContent = title;
+    $maxGifUser.textContent = user;
+}
+
+// Close maximized gif
+function closeMax() {
+    $maxGifSection.classList.remove("maximized-container")
+    $maxGifSection.classList.add("hidden");
+    $maxGifCloseContainer.classList.add("hidden");
+    $maxGifIcons.classList.add("hidden");
 }

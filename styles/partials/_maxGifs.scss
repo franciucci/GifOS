@@ -1,0 +1,52 @@
+@import "groundRules";
+@import "variables";
+
+.maximized-container {
+  background-color: rgba(255, 255, 255, 0.9);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: fixed;
+  z-index: 3000;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+.maximizedGifs {
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  &__gif {
+    display: inline-block;
+    .maxGif {
+      display: block;
+      margin: 0 auto;
+      max-width: 80%;
+    }
+  }
+  &__close {
+    margin: 10px;
+    display: flex;
+    justify-content: flex-end;
+    cursor: pointer;
+  }
+  &__icons {
+    padding-top: 0.625rem;
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    div {
+      img {
+        margin: 0 5px;
+      }
+    }
+  }
+}
+#maxGif-title,
+#maxGif-user {
+  font-family: $text_font;
+  font-size: 1rem;
+}
