@@ -1,111 +1,111 @@
 @import "variables";
 
 .trending-gifs {
-  background-color: $background-color;
-  margin-top: 3.7%;
-  padding: 3.8% 0 6.8%;
-  &__title {
-    font-family: $title_font;
-    color: $main_color;
-    font-size: 1.25rem;
-    font-weight: 600;
-    line-height: 1.875rem;
-    text-align: center;
-    padding: 3.8% 0 0.6%;
-  }
-  &__text {
-    font-family: $text_font;
-    color: #000000;
-    text-align: center;
-    line-height: 1.4375rem;
-    margin: 0.6% 5.6% 2.7%;
-    &__blockText {
-      display: block;
-    }
-  }
-  &__carousel {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 80vw;
-    margin: 0 auto;
-    #track {
-      display: flex;
-      width: 100%;
-      height: 100%;
-      justify-content: space-between;
-      overflow: scroll;
-      scroll-behavior: smooth;
-      @media screen and (min-width: 992px) {
-        overflow: hidden;
-      }
-    }
-    .btn-carousel {
-      margin: 0 10px;
-      padding: 2px;
-      background-color: white;
-      border: 1px solid $main_color;
-      height: 40px;
-      width: 40px;
-      display: none;
-      @media screen and (min-width: 992px) {
-        display: flex;
-      }
-      cursor: pointer;
-      .btnImg-carousel {
-        margin: 0 auto;
-      }
-    }
-  }
+	background-color: $background-color;
+	margin-top: 3.7%;
+	padding: 3.8% 0 6.8%;
+	&__title {
+		font-family: $title_font;
+		color: $main_color;
+		font-size: 1.25rem;
+		font-weight: 600;
+		line-height: 1.875rem;
+		text-align: center;
+		padding: 3.8% 0 0.6%;
+	}
+	&__text {
+		font-family: $text_font;
+		color: #000000;
+		text-align: center;
+		line-height: 1.4375rem;
+		margin: 0.6% 5.6% 2.7%;
+		&__blockText {
+			display: block;
+		}
+	}
+	&__carousel {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 80vw;
+		margin: 0 auto;
+		#track {
+			display: flex;
+			width: 100%;
+			height: 100%;
+			justify-content: space-between;
+			overflow: scroll;
+			scroll-behavior: smooth;
+			@media screen and (min-width: 992px) {
+				overflow: hidden;
+			}
+		}
+		.btn-carousel {
+			margin: 0 10px;
+			padding: 2px;
+			background-color: white;
+			border: 1px solid $main_color;
+			height: 40px;
+			width: 40px;
+			display: none;
+			@media screen and (min-width: 992px) {
+				display: flex;
+			}
+			cursor: pointer;
+			.btnImg-carousel {
+				margin: 0 auto;
+			}
+		}
+	}
 }
 .gifCard {
-  position: relative;
-  margin: 0 5px;
-  height: 100%;
-  &__gif {
-    width: 12.5rem;
-    height: 9.375rem;
-    @media screen and (min-width: 992px) {
-      width: 21.875rem;
-      height: 18.75rem;
-    }
-  }
-  .gifHover {
-    position: absolute;
-    width: 100%;
-    height: 99%;
-    top: 0px;
-    z-index: 9;
-    background-color: $main-color;
-    opacity: 0.7;
-    &__icons {
-      display: flex;
-      justify-content: flex-end;
-      .gif-icons {
-        margin: 2px;
-        padding: 5px;
-        height: auto;
-        background-color: white;
-        opacity: 0.7;
-        border-radius: 6px;
-        cursor: pointer;
-        &:hover {
-          opacity: 1;
-        }
-      }
-    }
-    &__textBox {
-      position: absolute;
-      bottom: 0px;
-      margin-bottom: 10%;
-      &__text {
-        padding-left: 10%;
-        margin: 2px 0;
-        color: white;
-        font-family: $text_font;
-        font-weight: bold;
-        font-size: 0.875rem;
-      }
-    }
-  }
+	position: relative;
+	margin: 0 5px;
+	height: 100%;
+	&__gif {
+		width: 12.5rem;
+		height: 9.375rem;
+		@media screen and (min-width: 992px) {
+			width: 21.875rem;
+			height: 18.75rem;
+		}
+	}
+	.gifHover {
+		position: absolute;
+		width: 100%;
+		height: 99%;
+		top: 0px;
+		z-index: 9;
+		background-color: $main-color;
+		opacity: 0.7;
+		&__icons {
+			display: flex;
+			justify-content: flex-end;
+			.gif-icons {
+				margin: 2px;
+				padding: 5px;
+				height: auto;
+				background-color: white;
+				opacity: 0.7;
+				border-radius: 6px;
+				cursor: pointer;
+				&:hover {
+					opacity: 1;
+				}
+			}
+		}
+		&__textBox {
+			position: absolute;
+			bottom: 0px;
+			margin-bottom: 10%;
+			&__text {
+				padding-left: 10%;
+				margin: 2px 0;
+				color: white;
+				font-family: $text_font;
+				font-weight: bold;
+				font-size: 0.875rem;
+			}
+		}
+	}
 }

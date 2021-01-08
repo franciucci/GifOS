@@ -1,221 +1,230 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GIFOS</title>
-    <link rel="stylesheet" href="styles/styles.css" type="text/css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <!-- HERE STARTS THE HEADER THAT CONTAINS THE NAVBAR -->
-    <header class="header">
-      <nav class="navbar">
-        <div class="navbar__icons">
-          <img
-            src="assets/mobile/logo-mobile.svg"
-            alt="logo-mobile"
-            id="logo-mobile"
-          />
-          <img
-            src="https://gif-os.netlify.app/assets/mobile/burger.svg"
-            alt="burger-menu"
-            id="burger"
-          />
-        </div>
-        <div class="navlinks menu-hide" id="navlinks">
-          <ul class="navlinks__list">
-            <li class="navlinks__list__link">
-              Modo Nocturno
-              <span class="links-border"></span>
-            </li>
-            <li class="navlinks__list__link">
-              Favoritos
-              <span class="links-border"></span>
-            </li>
-            <li class="navlinks__list__link">
-              Mis GIFOS
-              <span class="links-border"></span>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </header>
-    <!-- FINISH HEADER -->
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>GIFOS</title>
+		<link rel="stylesheet" href="styles/styles.css" type="text/css" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="preconnect" href="https://fonts.gstatic.com" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+			integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
+			crossorigin="anonymous"
+		/>
+	</head>
+	<body>
+		<!-- HERE STARTS THE HEADER THAT CONTAINS THE NAVBAR -->
+		<header class="header">
+			<nav class="navbar">
+				<div class="navbar__icons">
+					<img
+						src="assets/mobile/logo-mobile.svg"
+						alt="logo-mobile"
+						id="logo-mobile"
+					/>
+					<img
+						src="https://gif-os.netlify.app/assets/mobile/burger.svg"
+						alt="burger-menu"
+						id="burger"
+					/>
+				</div>
+				<div class="navlinks menu-hide" id="navlinks">
+					<ul class="navlinks__list">
+						<li class="navlinks__list__link">
+							Modo Nocturno
+							<span class="links-border"></span>
+						</li>
+						<li class="navlinks__list__link">
+							Favoritos
+							<span class="links-border"></span>
+						</li>
+						<li class="navlinks__list__link">
+							Mis GIFOS
+							<span class="links-border"></span>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</header>
+		<!-- FINISH HEADER -->
 
-    <!-- HERE STARTS THE MAIN SECTION -->
-    <main class="main">
-      <!-- THIS STARTS HERO SECTION -->
-      <section class="hero">
-        <h1 class="hero__text">
-          Inspírate, busca, guarda, y crea los mejores
-          <span class="hero__text__gifos">GIFOS</span>
-        </h1>
-        <img
-          src="assets/mobile/ilustra_header.svg"
-          alt="hero-image"
-          id="hero-img"
-        />
-      </section>
-      <!-- FINISH HERO SECTION -->
+		<!-- HERE STARTS THE MAIN SECTION -->
+		<main class="main">
+			<!-- THIS STARTS HERO SECTION -->
+			<section class="hero">
+				<h1 class="hero__text">
+					Inspírate, busca, guarda, y crea los mejores
+					<span class="hero__text__gifos">GIFOS</span>
+				</h1>
+				<img
+					src="assets/mobile/ilustra_header.svg"
+					alt="hero-image"
+					id="hero-img"
+				/>
+			</section>
+			<!-- FINISH HERO SECTION -->
 
-      <!-- STARTS SEARCH BAR SECTION -->
-      <section>
-        <div class="search-bar" id="search-bar">
-          <div class="search-bar__input">
-            <img
-              src="assets/mobile/icon-search-grey.svg"
-              alt="search icon"
-              id="search-icon-active"
-              class="hidden"
-            />
-            <input
-              type="text"
-              name="search-input"
-              id="search-input"
-              value=""
-              placeholder="Busca GIFOS y más"
-            />
-            <img
-              src="assets/mobile/icon-search.svg"
-              alt="search icon"
-              id="search-icon"
-            />
-            <img
-              src="assets/mobile/close.svg"
-              alt="close search icon"
-              id="close-search-icon"
-              class="hidden"
-            />
-          </div>
-          <div class="search-bar__suggestion hidden" id="suggestion">
-            <div class="search-bar__suggestion__border"></div>
-            <ul class="search-bar__suggestion__list" id="suggestion-list"></ul>
-          </div>
-        </div>
-      </section>
-      <!-- FINISH SEARCH BAR SECTION -->
+			<!-- STARTS SEARCH BAR SECTION -->
+			<section>
+				<div class="search-bar" id="search-bar">
+					<div class="search-bar__input">
+						<img
+							src="assets/mobile/icon-search-grey.svg"
+							alt="search icon"
+							id="search-icon-active"
+							class="hidden"
+						/>
+						<input
+							type="text"
+							name="search-input"
+							id="search-input"
+							value=""
+							placeholder="Busca GIFOS y más"
+						/>
+						<img
+							src="assets/mobile/icon-search.svg"
+							alt="search icon"
+							id="search-icon"
+						/>
+						<img
+							src="assets/mobile/close.svg"
+							alt="close search icon"
+							id="close-search-icon"
+							class="hidden"
+						/>
+					</div>
+					<div class="search-bar__suggestion hidden" id="suggestion">
+						<div class="search-bar__suggestion__border"></div>
+						<ul class="search-bar__suggestion__list" id="suggestion-list"></ul>
+					</div>
+				</div>
+			</section>
+			<!-- FINISH SEARCH BAR SECTION -->
 
-      <!-- STARTS TRENDING TAGS SECTION -->
-      <section class="trending-searchs">
-        <h2 class="trending-searchs__title">Trending:</h2>
-        <p class="trending-searchs__text" id="trending-searchs__text"></p>
-      </section>
-      <!-- FINISH TRENDING TAGS -->
+			<!-- STARTS TRENDING TAGS SECTION -->
+			<section class="trending-searchs">
+				<h2 class="trending-searchs__title">Trending:</h2>
+				<p class="trending-searchs__text" id="trending-searchs__text"></p>
+			</section>
+			<!-- FINISH TRENDING TAGS -->
 
-      <!-- STARTS SEARCH PAGE -->
-      <!-- This page will be hidden and will be controled with JS -->
-      <section class="searchs hidden">
-        <div class="searchs__top-border"></div>
-        <h2 class="searchs__title">Placeholder</h2>
-        <div class="searchs__gifs">Searchs placeholders</div>
-        <button class="searchs__btn">VER MÁS</button>
-      </section>
-      <!-- FINISH SEARCH PAGE -->
+			<!-- STARTS SEARCH PAGE -->
+			<!-- This page will be hidden and will be controled with JS -->
+			<section class="searchs hidden">
+				<div class="searchs__top-border"></div>
+				<h2 class="searchs__title">Placeholder</h2>
+				<div class="searchs__gifs">Searchs placeholders</div>
+				<button class="searchs__btn">VER MÁS</button>
+			</section>
+			<!-- FINISH SEARCH PAGE -->
 
-      <!-- STARTS FAVOURITE SECTION -->
-      <section class="favourites">
-        <img
-          src="assets/mobile/icon-favoritos.svg"
-          alt="icono favoritos"
-          id="fav"
-        />
-        <h2 class="favourites__title">Favoritos</h2>
-        <div class="favourites__gifs">Favourites placeholders</div>
-        <button class="favourites__btn">VER MÁS</button>
-      </section>
-      <!-- FINISH FAVOURITE SECTION -->
+			<!-- STARTS FAVOURITE SECTION -->
+			<section class="favourites">
+				<img
+					src="assets/mobile/icon-favoritos.svg"
+					alt="icono favoritos"
+					id="fav"
+				/>
+				<h2 class="favourites__title">Favoritos</h2>
+				<div class="favourites__gifs">Favourites placeholders</div>
+				<button class="favourites__btn">VER MÁS</button>
+			</section>
+			<!-- FINISH FAVOURITE SECTION -->
 
-      <!-- STARTS MI GIFOS SECTION -->
-      <section class="miGifos">
-        <img src="assets/mobile/icon-mis-gifos.svg" alt="mi gifos icon" />
-        <h2 class="miGifos__title">Mis GIFOS</h2>
-        <div class="miGifos__gifs">mi gifos placeholder</div>
-        <button class="miGifos__btn">VER MÁS</button>
-      </section>
-      <!-- FINISH MI GIFOS SECTION -->
+			<!-- STARTS MI GIFOS SECTION -->
+			<section class="miGifos">
+				<img src="assets/mobile/icon-mis-gifos.svg" alt="mi gifos icon" />
+				<h2 class="miGifos__title">Mis GIFOS</h2>
+				<div class="miGifos__gifs">mi gifos placeholder</div>
+				<button class="miGifos__btn">VER MÁS</button>
+			</section>
+			<!-- FINISH MI GIFOS SECTION -->
 
-      <!-- STARTS TRENDING GIFS SECTION -->
-      <section class="trending-gifs">
-        <h2 class="trending-gifs__title">Trending GIFOS</h2>
-        <p class="trending-gifs__text">
-          Mira los últimos<span class="trending-gifs__text__blockText">
-            GIFOS de nuestra comunidad</span
-          >
-        </p>
-        <div class="trending-gifs__carousel" id="trending-carousel">
-          <div class="btn-carousel" id="btn-prev">
-            <img
-              src="./assets/mobile/button-left.svg"
-              alt="carousel button left"
-              class="btnImg-carousel"
-            />
-          </div>
-          <div class="carousel-track" id="track"></div>
-          <div class="btn-carousel" id="btn-next">
-            <img
-              src="./assets/mobile/button-right.svg"
-              alt="carousel button left"
-              class="btnImg-carousel"
-            />
-          </div>
-        </div>
-      </section>
-      <!-- FINISH TRENDING GIFS -->
+			<!-- STARTS TRENDING GIFS SECTION -->
+			<section class="trending-gifs">
+				<h2 class="trending-gifs__title">Trending GIFOS</h2>
+				<p class="trending-gifs__text">
+					Mira los últimos<span class="trending-gifs__text__blockText">
+						GIFOS de nuestra comunidad</span
+					>
+				</p>
+				<div class="trending-gifs__carousel" id="trending-carousel">
+					<div class="btn-carousel" id="btn-prev">
+						<img
+							src="./assets/mobile/button-left.svg"
+							alt="carousel button left"
+							class="btnImg-carousel"
+						/>
+					</div>
+					<div class="carousel-track" id="track"></div>
+					<div class="btn-carousel" id="btn-next">
+						<img
+							src="./assets/mobile/button-right.svg"
+							alt="carousel button left"
+							class="btnImg-carousel"
+						/>
+					</div>
+				</div>
+			</section>
+			<!-- FINISH TRENDING GIFS -->
 
-      <!-- STARTS SOCIAL FOOTER -->
-      <footer class="social">
-        <h2 class="social__title">Compartir en:</h2>
-        <div class="social__icon-container">
-          <i class="fab fa-facebook-f social-icon"></i>
-          <i class="fab fa-twitter social-icon"></i>
-          <i class="fab fa-instagram social-icon"></i>
-        </div>
-        <p class="social__text">&copy GIFOS 2020 All Rights Reserved.</p>
-      </footer>
-      <!-- FINISH SOCIAL FOOTER -->
-    </main>
+			<!-- STARTS SOCIAL FOOTER -->
+			<footer class="social">
+				<h2 class="social__title">Compartir en:</h2>
+				<div class="social__icon-container">
+					<i class="fab fa-facebook-f social-icon"></i>
+					<i class="fab fa-twitter social-icon"></i>
+					<i class="fab fa-instagram social-icon"></i>
+				</div>
+				<p class="social__text">&copy GIFOS 2020 All Rights Reserved.</p>
+			</footer>
+			<!-- FINISH SOCIAL FOOTER -->
+		</main>
 
-    <!-- MAXIMIZED GIFS -->
-    <div class="hidden" id="maximized-container">
-      <div class="maximizedGifs">
-        <div class="maximizedGifs__close hidden" id="maximizedGifs__close">
-          <img
-            src="./assets/mobile/close.svg"
-            alt="close maximized gif"
-            class="maxGif-btnClose"
-          />
-        </div>
-        <div class="maximizedGifs__gif" id="maximizedGifs__gif"></div>
-        <div class="maximizedGifs__icons hidden" id="maximizedGifs__icons">
-          <div id="maxGif-data">
-            <p id="maxGif-user"></p>
-            <p id="maxGif-title"></p>
-          </div>
-          <div>
-            <img
-              src="./assets/mobile/icon-fav-hover.svg"
-              alt="add to favourite"
-            />
-            <img src="./assets/mobile/icon-download.svg" alt="download gif" />
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- SCRIPTS -->
-    <script src="script/variables.js"></script>
-    <script src="script/main.js"></script>
-  </body>
+		<!-- MAXIMIZED GIFS -->
+		<div class="hidden" id="maximized-container">
+			<div class="maximizedGifs">
+				<div class="maximizedGifs__close hidden" id="maximizedGifs__close">
+					<img
+						src="./assets/mobile/close.svg"
+						alt="close maximized gif"
+						class="maxGif-btnClose"
+					/>
+				</div>
+				<div class="maximizedGifs__gif" id="maximizedGifs__gif"></div>
+				<div class="maximizedGifs__icons hidden" id="maximizedGifs__icons">
+					<div class="maxGif-data">
+						<p id="maxGif-user"></p>
+						<p id="maxGif-title"></p>
+					</div>
+					<div class="maxGif-icons">
+						<img
+							src="./assets/mobile/icon-fav-hover.svg"
+							alt="add to favourite"
+						/>
+						<a class="download-btn">
+							<img src="./assets/mobile/icon-download.svg" alt="download gif"
+						/></a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- SCRIPTS -->
+		<script src="script/variables.js"></script>
+		<script src="script/main.js"></script>
+	</body>
 </html>
