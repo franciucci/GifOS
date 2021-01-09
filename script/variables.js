@@ -43,4 +43,4 @@ const $maxGifTitle = document.getElementById("maxGif-title");
 const $maxGifUser = document.getElementById("maxGif-user");
 
 const $maxGifBtnClose = document.querySelector(".maxGif-btnClose");
-const $maxDownload = document.querySelector(".download-btn");
+const $maxDownload = document.getElementById("download-btn");

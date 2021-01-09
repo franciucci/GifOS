@@ -725,7 +725,6 @@
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
-  cursor: pointer;
   width: 80%;
   margin: 0 auto;
   padding: 0.625rem;
@@ -735,6 +734,10 @@
   .maximizedGifs__close {
     width: 100%;
   }
+}
+
+.maximizedGifs__close .maxGif-btnClose {
+  cursor: pointer;
 }
 
 .maximizedGifs__icons {
@@ -756,15 +759,22 @@
 }
 
 .maximizedGifs__icons .maxGif-icons {
-  max-width: 30%;
+  width: 30%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
 }
 
 .maximizedGifs__icons .maxGif-icons img {
   padding: 0 5px;
+  cursor: pointer;
 }
 
 .maximizedGifs__icons .maxGif-data {
-  max-width: 70%;
+  width: 70%;
 }
 
 #maxGif-title,

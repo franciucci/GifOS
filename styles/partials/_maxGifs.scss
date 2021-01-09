@@ -30,12 +30,14 @@
 	&__close {
 		display: flex;
 		justify-content: flex-end;
-		cursor: pointer;
 		width: 80%;
 		margin: 0 auto;
 		padding: 0.625rem;
 		@media screen and (min-width: 990px) {
 			width: 100%;
+		}
+		.maxGif-btnClose {
+			cursor: pointer;
 		}
 	}
 	&__icons {
@@ -48,13 +50,16 @@
 			width: 100%;
 		}
 		.maxGif-icons {
-			max-width: 30%;
+			width: 30%;
+			display: flex;
+			justify-content: flex-end;
 			img {
 				padding: 0 5px;
+				cursor: pointer;
 			}
 		}
 		.maxGif-data {
-			max-width: 70%;
+			width: 70%;
 		}
 	}
 }

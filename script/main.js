@@ -137,7 +137,7 @@ function showTrendingGifs(json, i) {
     const gifHover = document.createElement("div");
     gifHover.setAttribute("class", "gifHover hidden");
     gifHover.setAttribute("id", `gifHover${i}`)
-    gifHover.innerHTML= `<div class="gifHover__icons"><img class="gif-icons" src="assets/mobile/icon-fav-hover.svg" alt="icon fav"><img class="gif-icons" src="assets/mobile/icon-download.svg" alt="icon download"><img class="gif-icons" id="max-${i}" src="assets/mobile/icon-max.svg" alt="icon max"></div><div class="gifHover__textBox"><p class="gifHover__textBox__text">${json.username}</p>
+    gifHover.innerHTML= `<div class="gifHover__icons"><img class="gif-icons" src="assets/mobile/icon-fav-hover.svg" alt="icon fav"><img class="gif-icons" src="assets/mobile/icon-download.svg" alt="icon download" onclick="downloadGif('${json.images.original.url}', '${json.title}')"><img class="gif-icons" id="max-${i}" src="assets/mobile/icon-max.svg" alt="icon max"></div><div class="gifHover__textBox"><p class="gifHover__textBox__text">${json.username}</p>
     <p class="gifHover__textBox__text">${json.title}</p></div>`;
     gifCard.appendChild(gifHover);
 
@@ -163,8 +163,6 @@ function showTrendingGifs(json, i) {
     // Add scroll function to buttons on desktop carousel
     addScrollToCarousel();  
     
-    // Download gif 
-
 }
 
 getTrendingGifs();
@@ -195,6 +193,7 @@ function maximizeGif(src, user, title) {
     $maxGifIcons.classList.remove("hidden");
     $maxGifTitle.textContent = title;
     $maxGifUser.textContent = user;
+    $maxDownload.setAttribute("onclick", `downloadGif('${src}', '${title}')`);
 }
 
 // Close maximized gif
@@ -206,5 +205,26 @@ function closeMax() {
 }
 
 /* ***** DOWNLOAD FUNCTION ****** */
-
-
+// Asynchronous function that fetch the gif url and creates a blob to force download
+async function downloadGif(url, title) {
+    await fetch(url, {
+        headers: new Headers({
+            'Origin': location.origin
+          }),
+          mode: 'cors'
+    }).then(response => response.blob())
+    .then(blob => {
+        let blobUrl = URL.createObjectURL(blob);
+        forceDownload(blobUrl, title);
+    })
+    .catch(err => console.log(err));
+}
+// Creates a <a> tag to force download and then eliminates it
+function forceDownload(blob, title) {
+    let link = document.createElement("a");
+    link.href = blob;
+    link.download = title;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+}
