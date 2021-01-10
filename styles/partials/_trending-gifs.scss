@@ -51,6 +51,9 @@
 			@media screen and (min-width: 992px) {
 				display: flex;
 			}
+			&:hover {
+				background-color: $main_color;
+			}
 			cursor: pointer;
 			.btnImg-carousel {
 				margin: 0 auto;

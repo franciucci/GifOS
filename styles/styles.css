@@ -356,6 +356,10 @@
   }
 }
 
+.trending-gifs__carousel .btn-carousel:hover {
+  background-color: #572ee5;
+}
+
 .trending-gifs__carousel .btn-carousel .btnImg-carousel {
   margin: 0 auto;
 }

@@ -137,8 +137,15 @@ function showTrendingGifs(json, i) {
     const gifHover = document.createElement("div");
     gifHover.setAttribute("class", "gifHover hidden");
     gifHover.setAttribute("id", `gifHover${i}`)
-    gifHover.innerHTML= `<div class="gifHover__icons"><img class="gif-icons" src="assets/mobile/icon-fav-hover.svg" alt="icon fav"><img class="gif-icons" src="assets/mobile/icon-download.svg" alt="icon download" onclick="downloadGif('${json.images.original.url}', '${json.title}')"><img class="gif-icons" id="max-${i}" src="assets/mobile/icon-max.svg" alt="icon max"></div><div class="gifHover__textBox"><p class="gifHover__textBox__text">${json.username}</p>
-    <p class="gifHover__textBox__text">${json.title}</p></div>`;
+    gifHover.innerHTML= `<div class="gifHover__icons">
+    <img class="gif-icons" src="assets/mobile/icon-fav-hover.svg" alt="icon fav" id="fav${i}" onclick="addToFavourites('${json.images.downsized.url}', '${json.title}', '${json.username}', 'fav${i}')">
+    <img class="gif-icons" src="assets/mobile/icon-download.svg" alt="icon download" onclick="downloadGif('${json.images.original.url}', '${json.title}')">
+    <img class="gif-icons" id="max-${i}" src="assets/mobile/icon-max.svg" alt="icon max">
+    </div>
+    <div class="gifHover__textBox">
+    <p class="gifHover__textBox__text">${json.username}</p>
+    <p class="gifHover__textBox__text">${json.title}</p>
+    </div>`;
     gifCard.appendChild(gifHover);
 
     // Action buttons and hover
@@ -161,11 +168,32 @@ function showTrendingGifs(json, i) {
     $maxGifBtnClose.addEventListener("click", closeMax);
 
     // Add scroll function to buttons on desktop carousel
-    addScrollToCarousel();  
+    addScrollToCarousel();
     
+    let favIcon = document.getElementById(`fav${i}`);
+    favIcon.addEventListener("click", changeFavIcon);
+}
+
+// Change carousel's buttons styles on hover
+function hoverCarouselButton() {
+    let buttonPrev = document.getElementById("btnImg-prev");
+    let buttonNext = document.getElementById("btnImg-next");
+    $prevBtn.addEventListener("mouseover", () => {
+        buttonPrev.src = "./assets/mobile/button-left-hover.svg";
+    })
+    $prevBtn.addEventListener("mouseout", () => {
+        buttonPrev.src = "./assets/mobile/button-left.svg";
+    })
+    $nextBtn.addEventListener("mouseover", () => {
+        buttonNext.src = "./assets/mobile/button-right-hover.svg";
+    })
+    $nextBtn.addEventListener("mouseout", () => {
+        buttonNext.src = "./assets/mobile/button-right.svg";
+    })
 }
 
 getTrendingGifs();
+hoverCarouselButton();
 
 // Add scroll behaviour to carousel buttons for desktop resolutions
 function addScrollToCarousel() {
@@ -194,6 +222,10 @@ function maximizeGif(src, user, title) {
     $maxGifTitle.textContent = title;
     $maxGifUser.textContent = user;
     $maxDownload.setAttribute("onclick", `downloadGif('${src}', '${title}')`);
+    $maxFavIcon.addEventListener("click", (e) => {
+        addToFavourites(src, title, user);
+        changeFavIcon(e);
+    });
 }
 
 // Close maximized gif
@@ -228,3 +260,40 @@ function forceDownload(blob, title) {
     link.click();
     link.remove();
 }
+
+/* ***** ADD TO FAVOURITES FUNCTION ***** */
+let favArray = [];
+function addToFavourites(url, title, user) {
+    let favObj = {gif: url, title: title, username: user};
+    // Checks if the gif is already in localStorage
+    // If it is, it will be removed, otherwise it 
+    // will be added to localStorage
+    const found = favArray.some(el => el.gif === url);
+    if (!found) {
+        favArray.push(favObj);
+        localStorage.setItem("favourites", JSON.stringify(favArray));
+    } else {
+        removeFavourite(favObj);
+    }
+    
+}
+
+function removeFavourite(obj) {
+    for (let i = 0; favArray.length; i++) {
+        if (favArray[i].gif === obj.gif) {
+            favArray.splice(i, 1);
+            localStorage.setItem("favourites", JSON.stringify(favArray));
+        } 
+    }
+}
+
+function changeFavIcon(e) {
+    let tag = e.target;
+    let src = tag.getAttribute("src");
+    if (src === "assets/mobile/icon-fav-hover.svg") {
+        tag.src = "assets/mobile/icon-fav-active.svg";
+    } else {
+        tag.src = "assets/mobile/icon-fav-hover.svg";
+    }
+}
+
