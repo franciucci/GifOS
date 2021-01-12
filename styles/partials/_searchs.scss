@@ -28,6 +28,10 @@
 	}
 	&__btn {
 		@extend %btn;
+		&:hover {
+			background-color: $main_color;
+			color: white;
+		}
 	}
 }
 
@@ -72,7 +76,7 @@
 
 .gifsContainer {
 	position: relative;
-	margin: 0 5px;
+	margin: 0.3125rem 0;
 	height: 100%;
 	.gif {
 		width: 12.5rem;

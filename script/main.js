@@ -1,4 +1,13 @@
 /* ********* NAVBAR******** */
+// Logo
+const logo = document.getElementById("logo-mobile");
+logo.addEventListener("click", goToHome);
+
+function goToHome() {
+	$heroSection.classList.remove("hidden");
+	$searchBarSection.classList.remove("hidden");
+	$favouriteSection.classList.add("hidden");
+}
 
 // Burger menu
 const burgerMenu = document.getElementById("burger");
@@ -106,6 +115,7 @@ function setInactiveSearch() {
 function cleanSearchSuggestions() {
 	$searchSuggestions.classList.add("hidden");
 	$searchSuggestionList.innerHTML = "";
+	setActiveSearch();
 }
 
 // Request to Giphy API to autocomplete search suggestions
@@ -404,9 +414,9 @@ function maximizeGif(src, user, title, index) {
 	const isFav = favArray.some((el) => el.gif === src);
 	if (isFav) {
 		$maxIcons.innerHTML = `
-        <img src="assets/mobile/icon-fav-active.svg" alt="add to favourite" id="maxFav-icon${index}"/>
-        <img src="./assets/mobile/icon-download.svg" alt="download gif" id="download-btn${index}"/>
-        `;
+			<img src="assets/mobile/icon-fav-active.svg" alt="add to favourite" id="maxFav-icon${index}"/>
+			<img src="./assets/mobile/icon-download.svg" alt="download gif" id="download-btn${index}"/>
+			`;
 	} else {
 		$maxIcons.innerHTML = `
         <img src="assets/mobile/icon-fav-hover.svg" alt="add to favourite" id="maxFav-icon${index}"/>
@@ -470,12 +480,14 @@ function forceDownload(blob, title) {
 }
 
 /* ***** ADD TO FAVOURITES FUNCTION ***** */
+
 let favArray = [];
 function addToFavourites(url, title, user) {
 	let favObj = { gif: url, title: title, username: user };
 	// Checks if the gif is already in localStorage
 	// If it is, it will be removed, otherwise it
 	// will be added to localStorage
+	favArray = JSON.parse(localStorage.getItem("favourites"));
 	const found = favArray.some((el) => el.gif === url);
 	if (!found) {
 		favArray.push(favObj);
@@ -490,6 +502,10 @@ function removeFavourite(obj) {
 	const newFavArray = favArray.filter((item) => item.gif !== obj.gif);
 	favArray = [...newFavArray];
 	localStorage.setItem("favourites", JSON.stringify(favArray));
+	let isFavHidden = $favouriteSection.classList.contains("hidden");
+	if (!isFavHidden) {
+		displayFavourites();
+	}
 }
 
 // Changes fav icon when clicked
@@ -516,33 +532,55 @@ function changeHoverIcon(index, src) {
 
 /* ******** FAVOURITES *********** */
 $favMenuBtn.addEventListener("click", activeFavourites);
-$brgFavBtn.addEventListener("click", activeFavourites);
+$brgFavBtn.addEventListener("click", () => {
+	activeFavourites();
+	showMenu();
+});
 
 function activeFavourites() {
+	window.scrollTo({ top: 0, behavior: "smooth" });
 	$favouriteSection.classList.remove("hidden");
 	$heroSection.classList.add("hidden");
 	$searchBarSection.classList.add("hidden");
 	$trendingTagsSection.classList.add("hidden");
+	$searchSection.classList.add("hidden");
+	cleanFavourites();
 	displayFavourites();
 }
 
+let favOffset = 0;
 function displayFavourites() {
 	let favourites = JSON.parse(localStorage.getItem("favourites"));
+	if (favOffset === 0) {
+		window.scrollTo({ top: 0, behavior: "smooth" });
+	}
+
+	if (favourites.length < 12) {
+		$favViewMore.style.display = "none";
+	}
+
 	if (favourites.length === 0) {
+		cleanFavourites();
 		displayFavEmpty();
 	} else {
 		displayFavGifs(favourites);
-		console.log(favourites);
 	}
 }
+
+function favViewMoreBtn() {
+	let favourites = JSON.parse(localStorage.getItem("favourites"));
+	favOffset += 12;
+	displayFavGifs(favourites);
+}
+
+/* $favViewMore.addEventListener("click", favViewMoreBtn); */
 
 function displayFavEmpty() {
 	$favEmpty.classList.remove("hidden");
 }
 
 function displayFavGifs(favourites) {
-	console.log("Muestra favoritos");
-
+	cleanFavourites();
 	for (let i = 0; i < favourites.length; i++) {
 		const favGifContainer = document.createElement("div");
 		favGifContainer.setAttribute("class", "favGifContainer");
@@ -572,7 +610,7 @@ function displayFavGifs(favourites) {
 		let maxIcon = document.getElementById(`max-${i}`);
 		maxIcon.setAttribute(
 			"onclick",
-			`maximizeGif('${favourites[i].gif}', '${favourites[i].username}', '${favourites[i].title}', '${i}')`,
+			`maximizeFavGif('${favourites[i].gif}', '${favourites[i].username}', '${favourites[i].title}', '${i}')`,
 		);
 
 		// In mobile maximizes gif when touched, in desktop
@@ -582,7 +620,7 @@ function displayFavGifs(favourites) {
 				let hoverOn = document.getElementById(`favHover${i}`);
 				hoverOn.classList.remove("hidden");
 			} else {
-				maximizeGif(
+				maximizeFavGif(
 					favourites[i].gif,
 					favourites[i].username,
 					favourites[i].title,
@@ -597,5 +635,51 @@ function displayFavGifs(favourites) {
 
 		// Adds a click event on close button to close maximized Gifs
 		$maxGifBtnClose.addEventListener("click", closeMax);
+
+		// Removes gif from favourites
+		let trashIcon = document.getElementById(`trash${i}`);
+		trashIcon.addEventListener("click", () => {
+			removeFavourite(favourites[i]);
+		});
 	}
+}
+
+// Cleans favourite section before render
+function cleanFavourites() {
+	$favGifs.innerHTML = "";
+	$favEmpty.classList.add("hidden");
+}
+
+function maximizeFavGif(src, user, title, index) {
+	let obj = { gif: src, title: title, username: user };
+
+	$maxGifContainer.innerHTML = `
+    <img class="maxGif" src="${src}" alt="${title}">
+    `;
+
+	// Check if gif is favourite or not and renders the icons
+	const isFav = favArray.some((el) => el.gif === src);
+
+	$maxIcons.innerHTML = `
+		<img src="assets/mobile/icon_trash.svg" alt="add to favourite" id="trash-icon${index}"/>
+		<img src="./assets/mobile/icon-download.svg" alt="download gif" id="download-btn${index}"/>
+		`;
+
+	// Display maximized gif
+	$maxGifSection.classList.add("maximized-container");
+	$maxGifSection.classList.remove("hidden");
+	$maxGifCloseContainer.classList.remove("hidden");
+	$maxGifIcons.classList.remove("hidden");
+	$maxGifTitle.textContent = title;
+	$maxGifUser.textContent = user;
+
+	// Add action to download button
+	let download = document.getElementById(`download-btn${index}`);
+	download.setAttribute("onclick", `downloadGif('${src}', '${title}')`);
+
+	// Add action to favourite button
+	let trashIcon = document.getElementById(`trash-icon${index}`);
+	trashIcon.addEventListener("click", () => {
+		removeFavourite(obj);
+	});
 }

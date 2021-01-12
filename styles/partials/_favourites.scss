@@ -30,9 +30,20 @@
 	}
 	&__btn {
 		@extend %btn;
+		cursor: pointer;
+		&:hover {
+			background-color: $main_color;
+			color: white;
+		}
 	}
 }
-
+.favourites__gifs {
+	padding: 1.6%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+	align-items: center;
+}
 .favGifContainer {
 	position: relative;
 	margin: 0 5px;
