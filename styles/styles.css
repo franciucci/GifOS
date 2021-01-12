@@ -53,6 +53,12 @@
   z-index: 1000;
 }
 
+@media screen and (min-width: 769px) {
+  .navbar {
+    border-top: solid 3px #572ee5;
+  }
+}
+
 .navbar__icons {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -60,7 +66,45 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   padding: 10px 20px;
+}
+
+.navbar__icons .navbarSearch-bar {
+  padding: 0.125rem;
+  width: 40%;
+  border: 1px solid #572ee5;
+  border-radius: 24px;
+}
+
+.navbar__icons .navbarSearch-bar__input {
+  padding: 1.2% 2% 1.2% 2%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-top: 0;
+}
+
+.navbar__icons .navbarSearch-bar__input #navbarSearch-input {
+  padding: 0 2%;
+  width: 100%;
+  border: none;
+  outline: none;
+}
+
+.navbar__icons .navbarSearch-bar__input #navbarSearch-icon,
+.navbar__icons .navbarSearch-bar__input #close-navbarSearch-icon {
+  cursor: pointer;
+}
+
+.navbar__icons .navbarSearch-bar__input #navbarSearch-icon-active {
+  height: 16px;
 }
 
 .navlinks {
@@ -129,6 +173,58 @@
   }
   to {
     height: 90vh;
+  }
+}
+
+.searchHidden {
+  display: none;
+}
+
+.navbar-desktop {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.navbar-desktop .navlinks-desktop {
+  padding: 0.125rem 0.4375rem;
+  margin-right: 0.25rem;
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #572ee5;
+}
+
+.navbar-desktop #createGif-btn {
+  padding: 0.9375rem;
+  margin-left: 0.5rem;
+  margin-right: 0.3125rem;
+  border: 1px solid #572ee5;
+  border-radius: 50px;
+}
+
+.desktopnav-hidden {
+  display: none;
+}
+
+@media screen and (min-width: 762px) {
+  .desktopnav-hidden {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
+#burger {
+  display: block;
+}
+
+@media screen and (min-width: 762px) {
+  #burger {
+    display: none;
   }
 }
 

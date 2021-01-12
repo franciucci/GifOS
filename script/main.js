@@ -14,6 +14,7 @@ function showMenu() {
 	}
 	changeBurgerMenu();
 }
+
 // This function switches between the burger menu icon and the button close icon
 function changeBurgerMenu() {
 	if (
@@ -25,6 +26,20 @@ function changeBurgerMenu() {
 		burgerMenu.src = "https://gif-os.netlify.app/assets/mobile/burger.svg";
 	}
 }
+
+// Sticky search bar in navbar
+function displayStickySearch() {
+	if (document.documentElement.scrollTop > 350) {
+		if (window.innerWidth > 992) {
+			$stickySearch.classList.remove("searchHidden");
+		} else {
+			$stickySearch.classList.add("searchHidden");
+		}
+	} else {
+		$stickySearch.classList.add("searchHidden");
+	}
+}
+window.addEventListener("scroll", displayStickySearch);
 
 /* ********TRENDINGS TAGS********* */
 

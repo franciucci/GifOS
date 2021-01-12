@@ -44,3 +44,8 @@ const $maxGifTitle = document.getElementById("maxGif-title");
 const $maxGifUser = document.getElementById("maxGif-user");
 
 const $maxGifBtnClose = document.querySelector(".maxGif-btnClose");
+
+// Navbar
+const $desktopLinks = document.querySelector(".navbar-desktop");
+const $navbarSearch = document.querySelector(".navbarSearch-bar");
+const $stickySearch = document.querySelector(".navbarSearch-bar");

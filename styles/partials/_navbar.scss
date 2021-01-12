@@ -1,59 +1,126 @@
 /* Navbar styles */
 .navbar {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background-color: white;
-  z-index: 1000;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	background-color: white;
+	z-index: 1000;
+	@media screen and (min-width: 769px) {
+		border-top: solid 3px $main_color;
+	}
 }
 .navbar__icons {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 20px;
+	.navbarSearch-bar {
+		padding: 0.125rem;
+		width: 40%;
+		border: 1px solid #572ee5;
+		border-radius: 24px;
+		&__input {
+			padding: 1.2% 2% 1.2% 2%;
+			display: flex;
+			width: 100%;
+			justify-content: space-between;
+			margin-top: 0;
+			#navbarSearch-input {
+				padding: 0 2%;
+				width: 100%;
+				border: none;
+				outline: none;
+			}
+			#navbarSearch-icon,
+			#close-navbarSearch-icon {
+				cursor: pointer;
+			}
+			#navbarSearch-icon-active {
+				height: 16px;
+			}
+		}
+	}
 }
 .navlinks {
-  display: flex;
-  flex-flow: column nowrap;
-  height: 90vh;
-  width: 100%;
-  z-index: 1000;
-  align-items: center;
-  background-color: #572ee5;
-  opacity: 0.9;
-  position: absolute;
-  animation-name: showMenu;
-  animation-duration: 0.5s;
-  animation-timing-function: ease-out;
-  &__list {
-    list-style: none;
-    margin-top: 2.9%;
-    &__link {
-      line-height: 3.75rem;
-      position: relative;
-      text-align: center;
-      font-family: "Montserrat", sans-serif;
-      font-weight: 600;
-      color: #ffffff;
-      // This creates a short border for each link on the menu
-      .borders-actives {
-        display: block;
-        border-top: 2px solid lightgrey;
-        opacity: 0.4;
-        width: 30%;
-        margin: 0 auto;
-      }
-    }
-  }
+	display: flex;
+	flex-flow: column nowrap;
+	height: 90vh;
+	width: 100%;
+	z-index: 1000;
+	align-items: center;
+	background-color: #572ee5;
+	opacity: 0.9;
+	position: absolute;
+	animation-name: showMenu;
+	animation-duration: 0.5s;
+	animation-timing-function: ease-out;
+	&__list {
+		list-style: none;
+		margin-top: 2.9%;
+		&__link {
+			line-height: 3.75rem;
+			position: relative;
+			text-align: center;
+			font-family: "Montserrat", sans-serif;
+			font-weight: 600;
+			color: #ffffff;
+			// This creates a short border for each link on the menu
+			.borders-actives {
+				display: block;
+				border-top: 2px solid lightgrey;
+				opacity: 0.4;
+				width: 30%;
+				margin: 0 auto;
+			}
+		}
+	}
 }
 // Hides the menu on mobile version
 .menu-hide {
-  display: none;
+	display: none;
 }
 @keyframes showMenu {
-  from {
-    height: 0;
-  }
-  to {
-    height: 90vh;
-  }
+	from {
+		height: 0;
+	}
+	to {
+		height: 90vh;
+	}
+}
+
+.searchHidden {
+	display: none;
+}
+
+.navbar-desktop {
+	display: flex;
+	align-items: center;
+	.navlinks-desktop {
+		padding: 0.125rem 0.4375rem;
+		margin-right: 0.25rem;
+		font-family: $text_font;
+		font-size: 1rem;
+		font-weight: 600;
+		color: $main_color;
+	}
+	#createGif-btn {
+		padding: 0.9375rem;
+		margin-left: 0.5rem;
+		margin-right: 0.3125rem;
+		border: 1px solid $main_color;
+		border-radius: 50px;
+	}
+}
+
+.desktopnav-hidden {
+	display: none;
+	@media screen and (min-width: 762px) {
+		display: flex;
+	}
+}
+#burger {
+	display: block;
+	@media screen and (min-width: 762px) {
+		display: none;
+	}
 }
