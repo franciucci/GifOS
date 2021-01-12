@@ -41,6 +41,16 @@ function displayStickySearch() {
 }
 window.addEventListener("scroll", displayStickySearch);
 
+//Searchbar in Navbar
+$navbarSearchInput.addEventListener("focus", setNavSearchActive);
+
+function setNavSearchActive() {
+	$navSearchActive.classList.remove("hidden");
+	$navSearchIcon.classList.add("hidden");
+	$closeNavSearch.classList.remove("hidden");
+}
+
+$closeNavSearch.addEventListener("click", resetSearch);
 /* ********TRENDINGS TAGS********* */
 
 // Request to Giphy API to show trending tags
@@ -68,6 +78,7 @@ getTrendingTags();
 /* Reset search bar to initial state */
 function resetSearch() {
 	$searchInput.value = "";
+	$navbarSearchInput.value = "";
 	setInactiveSearch();
 }
 
@@ -105,7 +116,6 @@ async function showSearchSuggestions() {
 	await fetch(url)
 		.then((response) => response.json())
 		.then((result) => {
-			let spanArray = [];
 			for (let i = 0; i < result.data.length; i++) {
 				const li = document.createElement("li");
 				li.setAttribute("onmousedown", `searchGifs('${result.data[i].name}')`);
@@ -120,15 +130,158 @@ async function showSearchSuggestions() {
 	$searchBar.classList.add("searchActive");
 }
 
-function searchGifs(search) {
+let offSet = 0;
+async function searchGifs(search) {
+	cleanSearchSuggestions();
 	$searchInput.value = search;
-	console.log(search);
+	$navbarSearchInput.value = search;
+	$searchSection.classList.remove("hidden");
+	$searchTitle.innerHTML = search;
+
+	if (offSet === 0) {
+		$searchGallery.innerHTML = "";
+	}
+
+	let searchUrl = `${searchEndpoint}?api_key=${apiKey}&q=${search}&limit=12&offset=${offSet}&rating=pg`;
+	await fetch(searchUrl)
+		.then((response) => response.json())
+		.then((results) => {
+			if (results.data == 0) {
+				displayErrorSearch();
+			} else {
+				displaySearchResults(results);
+			}
+		});
+}
+
+function displayErrorSearch() {
+	$searchSection.classList.remove("hidden");
+	$searchViewMore.classList.add("hidden");
+	$errorSearch.classList.remove("hidden");
+}
+
+function displaySearchResults(results) {
+	$searchViewMore.classList.remove("hidden");
+
+	if (offSet === 0) {
+		window.scrollTo({ top: 400, behavior: "smooth" });
+	}
+
+	if (results.data.length < 12) {
+		$searchViewMore.style.display = "none";
+	}
+
+	for (let i = 0; i < results.data.length; i++) {
+		const gifsContainer = document.createElement("div");
+		gifsContainer.setAttribute("class", "gifsContainer");
+		gifsContainer.innerHTML = `
+        <img class="gif" src="${results.data[i].images.downsized.url}">
+        `;
+		$searchGallery.appendChild(gifsContainer);
+
+		const gifHover = document.createElement("div");
+		gifHover.setAttribute("class", "gifHover hidden");
+		gifHover.setAttribute("id", `gifHover${i}`);
+
+		gifHover.innerHTML = `<div class="gifHover__icons">
+        <img class="gif-icons" src="assets/mobile/icon-fav-hover.svg" alt="icon fav" id="fav${i}">
+        <img class="gif-icons" src="assets/mobile/icon-download.svg" alt="icon download" onclick="downloadGif('${results.data[i].images.original.url}', '${results.data[i].title}')">
+        <img class="gif-icons" id="max-${i}" src="assets/mobile/icon-max.svg" alt="icon max">
+        </div>
+        <div class="gifHover__textBox">
+        <p class="gifHover__textBox__text">${results.data[i].username}</p>
+        <p class="gifHover__textBox__text">${results.data[i].title}</p>
+        </div>`;
+		gifsContainer.appendChild(gifHover);
+
+		// Maximizes gif when clicked max button
+		let maxIcon = document.getElementById(`max-${i}`);
+		maxIcon.setAttribute(
+			"onclick",
+			`maximizeGif('${results.data[i].images.downsized.url}', '${results.data[i].username}', '${results.data[i].title}', '${i}')`,
+		);
+
+		// In mobile maximizes gif when touched, in desktop
+		// display hover when mouse move over gif
+		gifsContainer.addEventListener("mouseover", () => {
+			if (window.innerWidth > 990) {
+				let hoverOn = document.getElementById(`gifHover${i}`);
+				hoverOn.classList.remove("hidden");
+			} else {
+				maximizeGif(
+					results.data[i].images.downsized.url,
+					results.data[i].username,
+					results.data[i].title,
+					i,
+				);
+			}
+		});
+		gifsContainer.addEventListener("mouseout", () => {
+			let hoverOut = document.getElementById(`gifHover${i}`);
+			hoverOut.classList.add("hidden");
+		});
+
+		// Adds a click event on close button to close maximized Gifs
+		$maxGifBtnClose.addEventListener("click", closeMax);
+
+		// Changes fav icon when clicked
+		let favIcon = document.getElementById(`fav${i}`);
+		favIcon.addEventListener("click", (e) => {
+			addToFavourites(
+				results.data[i].images.downsized.url,
+				results.data[i].title,
+				results.data[i].username,
+			);
+			changeFavIcon(e, results.data[i].images.downsized.url);
+		});
+	}
+}
+
+function cleanResults() {
+	$searchGallery.innerHTML = "";
+	$searchSection.classList.add("hidden");
+	$errorSearch.classList.add("hidden");
+}
+
+function viewMoreBtn() {
+	offSet += 12;
+	if ($searchInput.value) {
+		searchGifs($searchInput.value);
+	} else {
+		searchGifs($navbarSearchInput.value);
+	}
 }
 
 $searchInput.addEventListener("focus", setActiveSearch);
 $searchInput.addEventListener("input", showSearchSuggestions);
 $searchInput.addEventListener("focusout", setInactiveSearch);
-$closeSearchIcon.addEventListener("click", resetSearch);
+$searchInput.addEventListener("keydown", (event) => {
+	if (event.key === "Enter") {
+		searchGifs($searchInput.value);
+		cleanSearchSuggestions();
+	}
+});
+$searchIconActive.addEventListener("click", () =>
+	searchGifs($searchInput.value),
+);
+$closeSearchIcon.addEventListener("click", () => {
+	resetSearch();
+	cleanResults();
+});
+$closeNavSearch.addEventListener("click", () => {
+	resetSearch();
+	cleanResults();
+});
+$navSearchActive.addEventListener("click", () => {
+	searchGifs($navbarSearchInput.value);
+});
+$navbarSearchInput.addEventListener("keydown", (event) => {
+	if (event.key === "Enter") {
+		searchGifs($navbarSearchInput.value);
+		cleanSearchSuggestions();
+	}
+});
+$searchViewMore.addEventListener("click", viewMoreBtn);
 
 /* ********* TRENDING CAROUSEL HOME *********** */
 
@@ -152,7 +305,7 @@ function showTrendingGifs(json, i) {
 	gifCard.setAttribute("class", "gifCard");
 	gifCard.setAttribute("id", `gif${i}`);
 	gifCard.innerHTML = `
-    <img class="gifCard__gif" src="${json.images.downsized.url}" alt="${json.title}" data-name="${json.title}" data-user="${json.username}">`;
+    <img class="gifCard__gif" src="${json.images.downsized.url}" alt="${json.title}">`;
 	$trendingTrack.appendChild(gifCard);
 
 	// Creates a hover over the gif with gif's info and action buttons

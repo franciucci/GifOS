@@ -164,14 +164,22 @@
 			<!-- This page will be hidden and will be controled with JS -->
 			<section class="searchs hidden">
 				<div class="searchs__top-border"></div>
-				<h2 class="searchs__title">Placeholder</h2>
-				<div class="searchs__gifs">Searchs placeholders</div>
+				<h2 class="searchs__title"></h2>
+				<div class="searchs__gallery"></div>
+				<div class="searchs__error hidden">
+					<img
+						src="assets/mobile/icon-busqueda-sin-resultado.svg"
+						alt="busqueda sin resultado"
+						class="searchs__error__icon"
+					/>
+					<p class="searchs__error__text">Intentá con otra búsqueda.</p>
+				</div>
 				<button class="searchs__btn">VER MÁS</button>
 			</section>
 			<!-- FINISH SEARCH PAGE -->
 
 			<!-- STARTS FAVOURITE SECTION -->
-			<section class="favourites">
+			<section class="favourites hidden">
 				<img
 					src="assets/mobile/icon-favoritos.svg"
 					alt="icono favoritos"
@@ -184,7 +192,7 @@
 			<!-- FINISH FAVOURITE SECTION -->
 
 			<!-- STARTS MI GIFOS SECTION -->
-			<section class="miGifos">
+			<section class="miGifos hidden">
 				<img src="assets/mobile/icon-mis-gifos.svg" alt="mi gifos icon" />
 				<h2 class="miGifos__title">Mis GIFOS</h2>
 				<div class="miGifos__gifs">mi gifos placeholder</div>

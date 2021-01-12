@@ -624,13 +624,97 @@
   font-size: 1.5625rem;
 }
 
-.searchs__gifs {
+.searchs__gallery {
   padding: 1.6%;
   margin: 0 5.6% 3.3%;
-  width: 9.75rem;
-  height: 7.5rem;
-  background-color: lightgrey;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.gifHover {
+  position: absolute;
+  width: 100%;
+  height: 99%;
+  top: 0px;
+  z-index: 9;
+  background-color: #572ee5;
+  opacity: 0.7;
+}
+
+.gifHover__icons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.gifHover__icons .gif-icons {
+  margin: 2px;
+  padding: 5px;
+  height: auto;
+  background-color: white;
+  opacity: 0.7;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.gifHover__icons .gif-icons:hover {
+  opacity: 1;
+}
+
+.gifHover__textBox {
+  position: absolute;
+  bottom: 0px;
+  margin-bottom: 10%;
+}
+
+.gifHover__textBox__text {
+  padding-left: 10%;
+  margin: 2px 0;
+  color: white;
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+  font-size: 0.875rem;
+}
+
+.gifsContainer {
+  position: relative;
+  margin: 0 5px;
+  height: 100%;
+}
+
+.gifsContainer .gif {
+  width: 12.5rem;
+  height: 9.375rem;
+}
+
+@media screen and (min-width: 992px) {
+  .gifsContainer .gif {
+    width: 21.875rem;
+    height: 18.75rem;
+  }
+}
+
+.searchs__error {
   text-align: center;
+}
+
+.searchs__error__text {
+  margin-top: 0.9375rem;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.375rem;
+  color: #50e3c2;
 }
 
 /* variables */

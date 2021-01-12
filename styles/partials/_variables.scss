@@ -4,19 +4,20 @@ $main_color: #572ee5;
 $background-color: #f3f5f8;
 $text_font: "Roboto", sans-serif;
 $borders_color: #9cafc3;
+$secundary_color: #50e3c2;
 
 /* btn style */
 %btn {
-  margin: 3.4%;
-  padding: 0.8% 3.7%;
-  width: 25%;
-  font-family: $title_font;
-  font-size: 0.8125rem;
-  font-weight: bold;
-  color: $main_color;
-  text-align: center;
-  background-color: transparent;
-  border: 1px solid $main_color;
-  border-radius: 25px;
-  outline: none;
+	margin: 3.4%;
+	padding: 0.8% 3.7%;
+	width: 25%;
+	font-family: $title_font;
+	font-size: 0.8125rem;
+	font-weight: bold;
+	color: $main_color;
+	text-align: center;
+	background-color: transparent;
+	border: 1px solid $main_color;
+	border-radius: 25px;
+	outline: none;
 }

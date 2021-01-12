@@ -47,5 +47,22 @@ const $maxGifBtnClose = document.querySelector(".maxGif-btnClose");
 
 // Navbar
 const $desktopLinks = document.querySelector(".navbar-desktop");
-const $navbarSearch = document.querySelector(".navbarSearch-bar");
+const $navbarSearch = document.querySelector(".navbarSearch-bar__input");
 const $stickySearch = document.querySelector(".navbarSearch-bar");
+const $navSearchActive = document.getElementById("navbarSearch-icon-active");
+const $closeNavSearch = document.getElementById("close-navbarSearch-icon");
+const $navSearchIcon = document.getElementById("navbarSearch-icon");
+const $navbarSearchInput = document.getElementById("navbarSearch-input");
+
+/* ***** SEARCH GALLERY ****** */
+const $searchSection = document.querySelector(".searchs");
+const $searchTitle = document.querySelector(".searchs__title");
+const $searchGallery = document.querySelector(".searchs__gallery");
+const $searchViewMore = document.querySelector(".searchs__btn");
+const $errorSearch = document.querySelector(".searchs__error");
+
+/*  ***** FAVOURITES **** */
+const $favouriteSection = document.querySelector(".favourites");
+
+/* ***** MI GIFOS ******* */
+const $myGifos = document.querySelector(".miGifos");
