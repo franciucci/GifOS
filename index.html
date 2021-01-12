@@ -65,9 +65,9 @@
 						</div>
 					</div>
 					<div class="navbar-desktop desktopnav-hidden">
-						<p class="navlinks-desktop">MODO NOCTURNO</p>
-						<p class="navlinks-desktop">FAVORITOS</p>
-						<p class="navlinks-desktop">MIS GIFOS</p>
+						<p class="navlinks-desktop" id="night-mode">MODO NOCTURNO</p>
+						<p class="navlinks-desktop" id="fav-link">FAVORITOS</p>
+						<p class="navlinks-desktop" id="my-gifos-link">MIS GIFOS</p>
 						<img
 							src="assets/mobile/button-crear-gifo.svg"
 							alt="crear gifos"
@@ -82,15 +82,15 @@
 				</div>
 				<div class="navlinks menu-hide" id="navlinks">
 					<ul class="navlinks__list">
-						<li class="navlinks__list__link">
+						<li class="navlinks__list__link" id="night-mode-brg">
 							Modo Nocturno
 							<span class="links-border"></span>
 						</li>
-						<li class="navlinks__list__link">
+						<li class="navlinks__list__link" id="fav-link-brg">
 							Favoritos
 							<span class="links-border"></span>
 						</li>
-						<li class="navlinks__list__link">
+						<li class="navlinks__list__link" id="my-gifos-link-brg">
 							Mis GIFOS
 							<span class="links-border"></span>
 						</li>
@@ -117,7 +117,7 @@
 			<!-- FINISH HERO SECTION -->
 
 			<!-- STARTS SEARCH BAR SECTION -->
-			<section>
+			<section class="searchBar">
 				<div class="search-bar" id="search-bar">
 					<div class="search-bar__input">
 						<img
@@ -186,8 +186,20 @@
 					id="fav"
 				/>
 				<h2 class="favourites__title">Favoritos</h2>
-				<div class="favourites__gifs">Favourites placeholders</div>
-				<button class="favourites__btn">VER MÁS</button>
+				<div class="favourites__gifs"></div>
+				<div class="favourites__empty hidden">
+					<img
+						src="assets/mobile/icon-fav-sin-contenido.svg"
+						alt="favoritos sin contenido"
+						class="favourites__empty__icon"
+					/>
+					<p class="favourites__empty__text">
+						¡Guardá tu primer GIFO en Favoritos<span
+							>para que se muestre aquí!</span
+						>
+					</p>
+				</div>
+				<button class="favourites__btn hidden">VER MÁS</button>
 			</section>
 			<!-- FINISH FAVOURITE SECTION -->
 

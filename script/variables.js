@@ -17,8 +17,12 @@ const trendingTagsEndpoint = "https://api.giphy.com/v1/trending/searches";
 /* ******** DOM ITEMS ********* */
 const $mainPage = document.querySelector(".main");
 
+const $heroSection = document.querySelector(".hero");
+
+const $trendingTagsSection = document.querySelector(".trending-searchs");
 const $trendingSearchTags = document.getElementById("trending-searchs__text");
 
+const $searchBarSection = document.querySelector(".searchBar");
 const $searchBar = document.getElementById("search-bar");
 const $searchInput = document.getElementById("search-input");
 const $searchSuggestions = document.getElementById("suggestion");
@@ -46,6 +50,7 @@ const $maxGifUser = document.getElementById("maxGif-user");
 const $maxGifBtnClose = document.querySelector(".maxGif-btnClose");
 
 // Navbar
+const $brgMenu = document.querySelector(".navlinks");
 const $desktopLinks = document.querySelector(".navbar-desktop");
 const $navbarSearch = document.querySelector(".navbarSearch-bar__input");
 const $stickySearch = document.querySelector(".navbarSearch-bar");
@@ -63,6 +68,11 @@ const $errorSearch = document.querySelector(".searchs__error");
 
 /*  ***** FAVOURITES **** */
 const $favouriteSection = document.querySelector(".favourites");
+const $favGifs = document.querySelector(".favourites__gifs");
+const $favMenuBtn = document.getElementById("fav-link");
+const $brgFavBtn = document.getElementById("fav-link-brg");
+const $favViewMore = document.querySelector(".favourites__btn");
+const $favEmpty = document.querySelector(".favourites__empty");
 
 /* ***** MI GIFOS ******* */
 const $myGifos = document.querySelector(".miGifos");

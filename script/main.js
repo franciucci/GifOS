@@ -513,3 +513,89 @@ function changeHoverIcon(index, src) {
 		iconTag.src = "assets/mobile/icon-fav-hover.svg";
 	}
 }
+
+/* ******** FAVOURITES *********** */
+$favMenuBtn.addEventListener("click", activeFavourites);
+$brgFavBtn.addEventListener("click", activeFavourites);
+
+function activeFavourites() {
+	$favouriteSection.classList.remove("hidden");
+	$heroSection.classList.add("hidden");
+	$searchBarSection.classList.add("hidden");
+	$trendingTagsSection.classList.add("hidden");
+	displayFavourites();
+}
+
+function displayFavourites() {
+	let favourites = JSON.parse(localStorage.getItem("favourites"));
+	if (favourites.length === 0) {
+		displayFavEmpty();
+	} else {
+		displayFavGifs(favourites);
+		console.log(favourites);
+	}
+}
+
+function displayFavEmpty() {
+	$favEmpty.classList.remove("hidden");
+}
+
+function displayFavGifs(favourites) {
+	console.log("Muestra favoritos");
+
+	for (let i = 0; i < favourites.length; i++) {
+		const favGifContainer = document.createElement("div");
+		favGifContainer.setAttribute("class", "favGifContainer");
+
+		favGifContainer.innerHTML = `
+		<img class="favGifContainer__gif" src="${favourites[i].gif}" alt="${favourites[i].title}">
+		`;
+		$favGifs.appendChild(favGifContainer);
+
+		// Creates a hover over the gif with gif's info and action buttons
+		const favHover = document.createElement("div");
+		favHover.setAttribute("class", "favHover hidden");
+		favHover.setAttribute("id", `favHover${i}`);
+
+		favHover.innerHTML = `<div class="favHover__icons">
+		<img class="gif-icons" src="assets/mobile/icon_trash.svg" alt="icon trash" id="trash${i}">
+		<img class="gif-icons" src="assets/mobile/icon-download.svg" alt="icon download" onclick="downloadGif('${favourites[i].gif}', '${favourites[i].title}')">
+		<img class="gif-icons" id="max-${i}" src="assets/mobile/icon-max.svg" alt="icon max">
+		</div>
+		<div class="favHover__textBox">
+		<p class="favHover__textBox__text">${favourites[i].username}</p>
+		<p class="favHover__textBox__text">${favourites[i].title}</p>
+		</div>`;
+		favGifContainer.appendChild(favHover);
+
+		// Maximizes gif when clicked max button
+		let maxIcon = document.getElementById(`max-${i}`);
+		maxIcon.setAttribute(
+			"onclick",
+			`maximizeGif('${favourites[i].gif}', '${favourites[i].username}', '${favourites[i].title}', '${i}')`,
+		);
+
+		// In mobile maximizes gif when touched, in desktop
+		// display hover when mouse move over gif
+		favGifContainer.addEventListener("mouseover", () => {
+			if (window.innerWidth > 990) {
+				let hoverOn = document.getElementById(`favHover${i}`);
+				hoverOn.classList.remove("hidden");
+			} else {
+				maximizeGif(
+					favourites[i].gif,
+					favourites[i].username,
+					favourites[i].title,
+					i,
+				);
+			}
+		});
+		favGifContainer.addEventListener("mouseout", () => {
+			let hoverOut = document.getElementById(`favHover${i}`);
+			hoverOut.classList.add("hidden");
+		});
+
+		// Adds a click event on close button to close maximized Gifs
+		$maxGifBtnClose.addEventListener("click", closeMax);
+	}
+}
