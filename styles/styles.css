@@ -909,6 +909,7 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  margin-top: 6.25rem;
 }
 
 .miGifos__title {
@@ -920,13 +921,105 @@
   line-height: 1.875rem;
 }
 
-.miGifos__gifs {
+.miGifos__empty {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  margin-top: 2.5rem;
+}
+
+.miGifos__empty h3 {
+  margin: 0.625rem;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.375rem;
+  font-weight: 600;
+  color: #50e3c2;
+}
+
+.miGifos__gifs__gallery {
   padding: 1.6%;
-  margin: 2.4%;
-  width: 9.75rem;
-  height: 7.5rem;
-  background-color: lightgrey;
-  text-align: center;
+  margin: 0 5.6% 3.3%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.gifoHover {
+  position: absolute;
+  width: 100%;
+  height: 99%;
+  top: 0px;
+  z-index: 9;
+  background-color: #572ee5;
+  opacity: 0.7;
+}
+
+.gifoHover__icons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.gifoHover__icons .gif-icons {
+  margin: 2px;
+  padding: 5px;
+  height: auto;
+  background-color: white;
+  opacity: 0.7;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.gifoHover__icons .gif-icons:hover {
+  opacity: 1;
+}
+
+.gifoHover__textBox {
+  position: absolute;
+  bottom: 0px;
+  margin-bottom: 10%;
+}
+
+.gifoHover__textBox__text {
+  padding-left: 10%;
+  margin: 2px 0;
+  color: white;
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+  font-size: 0.875rem;
+}
+
+.gif__container {
+  position: relative;
+  margin: 0.3125rem 0;
+  height: 100%;
+}
+
+.gif__container .gif {
+  width: 12.5rem;
+  height: 9.375rem;
+}
+
+@media screen and (min-width: 992px) {
+  .gif__container .gif {
+    width: 21.875rem;
+    height: 18.75rem;
+  }
 }
 
 /* variables */

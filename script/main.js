@@ -739,6 +739,7 @@ $createGifBtn.addEventListener("click", () => {
 	$searchSection.classList.add("hidden");
 	$favouriteSection.classList.add("hidden");
 	$carouselSection.classList.add("hidden");
+	$myGifosSection.classList.add("hidden");
 });
 
 let recorder;
@@ -752,7 +753,7 @@ let hours = "00";
 let minutes = "00";
 let seconds = "00";
 
-// TODO función que ejecuta la cámara y se setea la API
+// función que ejecuta la cámara y se setea la API
 const getStreamAndRecord = async () => {
 	$crearGifTitle.innerHTML = `¿Nos das acceso <br> a tu cámara?`;
 	$crearGifText.innerHTML = `El acceso a tu camara será válido sólo <br> por el tiempo en el que estés creando el GIFO.`;
@@ -794,7 +795,7 @@ const getStreamAndRecord = async () => {
 // Cuando clickea comenzar, se ejecuta la cámara y se setea la API
 $buttonComenzar.addEventListener("click", getStreamAndRecord);
 
-// TODO función para empezar
+// función para empezar
 const createGifo = () => {
 	console.log("está grabando");
 	$buttonGrabar.style.display = "none";
@@ -807,7 +808,7 @@ const createGifo = () => {
 
 $buttonGrabar.addEventListener("click", createGifo);
 
-// TODO función para parar la grabación
+// función para parar la grabación
 const stopCreatingGif = () => {
 	$video.classList.add("hidden");
 	$recordedGifo.classList.remove("hidden");
@@ -834,7 +835,7 @@ const stopCreatingGif = () => {
 
 $buttonFinalizar.addEventListener("click", stopCreatingGif);
 
-// TODO función para subir a Giphy y almacenar el gif en Mis gifos
+// función para subir a Giphy y almacenar el gif en Mis gifos
 const uploeadCreatedGif = async () => {
 	$overlay.style.display = "flex";
 	$step2.classList.remove("step-active");
@@ -871,7 +872,7 @@ const uploeadCreatedGif = async () => {
 
 $buttonSubirGif.addEventListener("click", uploeadCreatedGif);
 
-// TODO función para repetir
+// función para repetir
 const repeatRecordingGif = (event) => {
 	event.preventDefault();
 	recorder.clearRecordedData();
@@ -908,12 +909,8 @@ const repeatRecordingGif = (event) => {
 };
 $repeatBtn.addEventListener("click", repeatRecordingGif);
 
-// TODO función para descargar el gif creado
+// función para descargar el gif creado
 const downloadCreatedGif = async (myGifId) => {
-	/* let blob = await fetch(
-		`https://media.giphy.com/media/${myGifId}/giphy.gif`,
-	).then((img) => img.blob());
-	invokeSaveAsDialog(blob, "My-Gif.gif"); */
 	await fetch(`https://media.giphy.com/media/${myGifId}/giphy.gif`)
 		.then((response) => response.blob())
 		.then((blob) => {
@@ -923,7 +920,7 @@ const downloadCreatedGif = async (myGifId) => {
 		.catch((err) => console.log(err));
 };
 
-// TODO función para el timer
+// función para el timer
 function timerActive() {
 	seconds++;
 
@@ -946,12 +943,150 @@ function timerActive() {
 	$timer.innerHTML = `${hours}:${minutes}:${seconds}`;
 }
 
-/* async function downloadGif(url, title) {
-	await fetch(url)
-		.then((response) => response.blob())
-		.then((blob) => {
-			let blobUrl = URL.createObjectURL(blob);
-			forceDownload(blobUrl, title);
-		})
-		.catch((err) => console.log(err));
-} */
+/* ********************************* MY GIFOS ******************************** */
+function displayMisGifosSection() {
+	$myGifosSection.classList.remove("hidden");
+	$heroSection.classList.add("hidden");
+	$favouriteSection.classList.add("hidden");
+	$createGifSection.classList.add("hidden");
+	$trendingTagsSection.classList.add("hidden");
+	window.scrollTo({ top: 0, behavior: "smooth" });
+	displayMiGifos();
+
+	if (arrMyGifos.length == 0 || arrMyGifos == null) {
+		$myGifosEmpty.classList.remove("hidden");
+		$myGifosGallery.classList.add("hidden");
+	} else {
+		$myGifosEmpty.classList.add("hidden");
+		$myGifosGallery.classList.remove("hidden");
+	}
+}
+
+$myGifosMenu.addEventListener("click", displayMisGifosSection);
+$brgMyGifosMenu.addEventListener("click", (e) => {
+	showMenu();
+	displayMisGifosSection(e);
+});
+
+function displayMiGifos() {
+	$myGifosGallery.innerHTML = "";
+
+	arrMyGifos = JSON.parse(localStorage.getItem("MyGifs"));
+
+	console.log(arrMyGifos);
+	if (arrMyGifos == null) {
+		arrMyGifos = [];
+	} else {
+		for (let i = 0; i < arrMyGifos.length; i++) {
+			fetch(
+				`https://api.giphy.com/v1/gifs?ids=${arrMyGifos[i]}&api_key=${apiKey}`,
+			)
+				.then((response) => response.json())
+				.then((misGifosGiphy) => {
+					let gifId = misGifosGiphy.data[0].id;
+					const gifContainer = document.createElement("div");
+					gifContainer.setAttribute("class", "gif__container");
+
+					gifContainer.innerHTML = `
+					<img class="miGifos__gifs__gallery__gif" src="${misGifosGiphy.data[0].images.downsized.url}" alt="${misGifosGiphy.data[0].title}">
+					`;
+					$myGifosGallery.appendChild(gifContainer);
+
+					// Creates a hover over the gif with gif's info and action buttons
+					const gifoHover = document.createElement("div");
+					gifoHover.setAttribute("class", "gifoHover hidden");
+					gifoHover.setAttribute("id", `gifoHover${i}`);
+
+					gifoHover.innerHTML = `<div class="gifoHover__icons">
+					<img class="gif-icons" src="assets/mobile/icon_trash.svg" alt="icon trash" id="trash${i}">
+					<img class="gif-icons" src="assets/mobile/icon-download.svg" alt="icon download" onclick="downloadGif('${misGifosGiphy.data[0].images.downsized.url}', '${misGifosGiphy.data[0].title}')">
+					<img class="gif-icons" id="max-${i}" src="assets/mobile/icon-max.svg" alt="icon max">
+					</div>
+					<div class="gifoHover__textBox">
+					<p class="gifoHover__textBox__text">${misGifosGiphy.data[0].username}</p>
+					<p class="gifoHover__textBox__text">${misGifosGiphy.data[0].title}</p>
+					</div>`;
+					gifContainer.appendChild(gifoHover);
+
+					// Maximizes gif when clicked max button
+					let maxIcon = document.getElementById(`max-${i}`);
+					maxIcon.setAttribute(
+						"onclick",
+						`maximizeMyGifos('${misGifosGiphy.data[0].images.downsized.url}', '${misGifosGiphy.data[0].username}', '${misGifosGiphy.data[0].title}', '${i}', '${gifId}')`,
+					);
+
+					// In mobile maximizes gif when touched, in desktop
+					// display hover when mouse move over gif
+					gifContainer.addEventListener("mouseover", (e) => {
+						if (window.innerWidth > 990) {
+							let hoverOn = document.getElementById(`gifoHover${i}`);
+							hoverOn.classList.remove("hidden");
+						} else {
+							maximizeMyGifos(
+								misGifosGiphy.data[0].images.downsized.url,
+								misGifosGiphy.data[0].username,
+								misGifosGiphy.data[0].title,
+								i,
+								gifId,
+							);
+						}
+					});
+					gifContainer.addEventListener("mouseout", (e) => {
+						let hoverOut = document.getElementById(`gifoHover${i}`);
+						hoverOut.classList.add("hidden");
+					});
+
+					// Adds a click event on close button to close maximized Gifs
+					$maxGifBtnClose.addEventListener("click", closeMax);
+
+					// Removes gif from favourites
+					let trashIcon = document.getElementById(`trash${i}`);
+					trashIcon.addEventListener("click", () => {
+						removeMyGifos(gifId);
+					});
+				})
+				.catch((err) => {
+					console.error(err);
+				});
+		}
+	}
+}
+
+// Maximizes my gifos
+function maximizeMyGifos(src, user, title, index, id) {
+	let obj = { gif: src, title: title, username: user };
+
+	$maxGifContainer.innerHTML = `
+    <img class="maxGif" src="${src}" alt="${title}">
+    `;
+
+	$maxIcons.innerHTML = `
+		<img src="assets/mobile/icon_trash.svg" alt="add to favourite" id="trash-icon${index}"/>
+		<img src="./assets/mobile/icon-download.svg" alt="download gif" id="download-btn${index}"/>
+		`;
+
+	// Display maximized gif
+	$maxGifSection.classList.add("maximized-container");
+	$maxGifSection.classList.remove("hidden");
+	$maxGifCloseContainer.classList.remove("hidden");
+	$maxGifIcons.classList.remove("hidden");
+	$maxGifTitle.textContent = title;
+	$maxGifUser.textContent = user;
+
+	// Add action to download button
+	let download = document.getElementById(`download-btn${index}`);
+	download.setAttribute("onclick", `downloadGif('${src}', '${title}')`);
+
+	// Add action to favourite button
+	let trashIcon = document.getElementById(`trash-icon${index}`);
+	trashIcon.addEventListener("click", () => {
+		removeMyGifos(id);
+	});
+}
+
+function removeMyGifos(gifId) {
+	const newGifosArray = arrMyGifos.filter((item) => item !== gifId);
+	arrMyGifos = [...newGifosArray];
+	localStorage.setItem("MyGifs", JSON.stringify(arrMyGifos));
+	displayMisGifosSection();
+}

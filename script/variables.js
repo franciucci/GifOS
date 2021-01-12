@@ -79,7 +79,11 @@ const $favViewMore = document.querySelector(".favourites__btn");
 const $favEmpty = document.querySelector(".favourites__empty");
 
 /* ***** MI GIFOS ******* */
-const $myGifos = document.querySelector(".miGifos");
+const $myGifosMenu = document.querySelector("#my-gifos-link");
+const $brgMyGifosMenu = document.getElementById("my-gifos-link-brg");
+const $myGifosSection = document.querySelector(".miGifos");
+const $myGifosEmpty = document.getElementById("miGifos__empty");
+const $myGifosGallery = document.getElementById("miGifos__gifs__gallery");
 
 /* ***** CREATE GIFOS ****** */
 
