@@ -580,24 +580,32 @@ function displayFavourites() {
 		cleanFavourites();
 		displayFavEmpty();
 	} else {
-		displayFavGifs(favourites);
+		if (favourites.length > 12) {
+			let favChunk = favourites.slice(0, 12);
+			displayFavGifs(favChunk);
+		} else {
+			displayFavGifs(favourites);
+		}
 	}
 }
 
 function favViewMoreBtn() {
 	let favourites = JSON.parse(localStorage.getItem("favourites"));
 	favOffset += 12;
-	displayFavGifs(favourites);
+	let favChunk = favourites.slice(favOffset, favOffset + 12);
+	displayFavGifs(favChunk);
 }
 
-/* $favViewMore.addEventListener("click", favViewMoreBtn); */
+$favViewMore.addEventListener("click", favViewMoreBtn);
 
 function displayFavEmpty() {
 	$favEmpty.classList.remove("hidden");
 }
 
 function displayFavGifs(favourites) {
-	cleanFavourites();
+	if (favourites.length < 12) {
+		$favViewMore.style.display = "none";
+	}
 	for (let i = 0; i < favourites.length; i++) {
 		const favGifContainer = document.createElement("div");
 		favGifContainer.setAttribute("class", "favGifContainer");
@@ -610,12 +618,18 @@ function displayFavGifs(favourites) {
 		// Creates a hover over the gif with gif's info and action buttons
 		const favHover = document.createElement("div");
 		favHover.setAttribute("class", "favHover hidden");
-		favHover.setAttribute("id", `favHover${i}`);
+		favHover.setAttribute("id", `favHover${i + favOffset}`);
 
 		favHover.innerHTML = `<div class="favHover__icons">
-		<img class="gif-icons" src="assets/mobile/icon_trash.svg" alt="icon trash" id="trash${i}">
-		<img class="gif-icons" src="assets/mobile/icon-download.svg" alt="icon download" onclick="downloadGif('${favourites[i].gif}', '${favourites[i].title}')">
-		<img class="gif-icons" id="max-${i}" src="assets/mobile/icon-max.svg" alt="icon max">
+		<img class="gif-icons" src="assets/mobile/icon_trash.svg" alt="icon trash" id="trash${
+			i + favOffset
+		}">
+		<img class="gif-icons" src="assets/mobile/icon-download.svg" alt="icon download" onclick="downloadGif('${
+			favourites[i].gif
+		}', '${favourites[i].title}')">
+		<img class="gif-icons" id="max-${
+			i + favOffset
+		}" src="assets/mobile/icon-max.svg" alt="icon max">
 		</div>
 		<div class="favHover__textBox">
 		<p class="favHover__textBox__text">${favourites[i].username}</p>
@@ -624,7 +638,7 @@ function displayFavGifs(favourites) {
 		favGifContainer.appendChild(favHover);
 
 		// Maximizes gif when clicked max button
-		let maxIcon = document.getElementById(`max-${i}`);
+		let maxIcon = document.getElementById(`max-${i + favOffset}`);
 		maxIcon.setAttribute(
 			"onclick",
 			`maximizeFavGif('${favourites[i].gif}', '${favourites[i].username}', '${favourites[i].title}', '${i}')`,
@@ -634,7 +648,7 @@ function displayFavGifs(favourites) {
 		// display hover when mouse move over gif
 		favGifContainer.addEventListener("mouseover", () => {
 			if (window.innerWidth > 990) {
-				let hoverOn = document.getElementById(`favHover${i}`);
+				let hoverOn = document.getElementById(`favHover${i + favOffset}`);
 				hoverOn.classList.remove("hidden");
 			} else {
 				maximizeFavGif(
@@ -646,7 +660,7 @@ function displayFavGifs(favourites) {
 			}
 		});
 		favGifContainer.addEventListener("mouseout", () => {
-			let hoverOut = document.getElementById(`favHover${i}`);
+			let hoverOut = document.getElementById(`favHover${i + favOffset}`);
 			hoverOut.classList.add("hidden");
 		});
 
@@ -654,7 +668,7 @@ function displayFavGifs(favourites) {
 		$maxGifBtnClose.addEventListener("click", closeMax);
 
 		// Removes gif from favourites
-		let trashIcon = document.getElementById(`trash${i}`);
+		let trashIcon = document.getElementById(`trash${i + favOffset}`);
 		trashIcon.addEventListener("click", () => {
 			removeFavourite(favourites[i]);
 		});
