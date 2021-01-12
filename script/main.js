@@ -365,8 +365,15 @@ function showTrendingGifs(json, i) {
 	// Changes fav icon when clicked
 	let favIcon = document.getElementById(`fav${i}`);
 	favIcon.addEventListener("click", (e) => {
-		addToFavourites(json.images.downsized.url, json.title, json.username);
-		changeFavIcon(e, json.images.downsized.url);
+		let isFavHidden = $favouriteSection.classList.contains("hidden");
+		if (!isFavHidden) {
+			addToFavourites(json.images.downsized.url, json.title, json.username);
+			changeFavIcon(e, json.images.downsized.url);
+			displayFavourites();
+		} else {
+			addToFavourites(json.images.downsized.url, json.title, json.username);
+			changeFavIcon(e, json.images.downsized.url);
+		}
 	});
 }
 
@@ -439,9 +446,17 @@ function maximizeGif(src, user, title, index) {
 	// Add action to favourite button
 	let favIcon = document.getElementById(`maxFav-icon${index}`);
 	favIcon.addEventListener("click", (e) => {
-		addToFavourites(src, title, user);
-		changeFavIcon(e, src);
-		changeHoverIcon(index, src);
+		let isFavHidden = $favouriteSection.classList.contains("hidden");
+		if (!isFavHidden) {
+			addToFavourites(src, title, user);
+			changeFavIcon(e, src);
+			changeHoverIcon(index, src);
+			displayFavourites();
+		} else {
+			addToFavourites(src, title, user);
+			changeFavIcon(e, src);
+			changeHoverIcon(index, src);
+		}
 	});
 }
 
@@ -504,6 +519,8 @@ function removeFavourite(obj) {
 	localStorage.setItem("favourites", JSON.stringify(favArray));
 	let isFavHidden = $favouriteSection.classList.contains("hidden");
 	if (!isFavHidden) {
+		$maxGifSection.classList.remove("maximized-container");
+		$maxGifSection.classList.add("hidden");
 		displayFavourites();
 	}
 }
