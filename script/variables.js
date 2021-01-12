@@ -14,6 +14,9 @@ const searchAutocompleteEndpoint = "https://api.giphy.com/v1/gifs/search/tags";
 // Endpoint for trending tags
 const trendingTagsEndpoint = "https://api.giphy.com/v1/trending/searches";
 
+// Upload Endpoint
+const uploadGifEndpoint = "https://upload.giphy.com/v1/gifs";
+
 /* ******** DOM ITEMS ********* */
 const $mainPage = document.querySelector(".main");
 
@@ -33,6 +36,7 @@ const $searchIcon = document.getElementById("search-icon");
 const $closeSearchIcon = document.getElementById("close-search-icon");
 
 // Trend carousel
+const $carouselSection = document.querySelector(".trending-gifs");
 const $trendingCarousel = document.getElementById("trending-carousel");
 const $trendingTrack = document.getElementById("track");
 const $nextBtn = document.getElementById("btn-next");
@@ -76,3 +80,27 @@ const $favEmpty = document.querySelector(".favourites__empty");
 
 /* ***** MI GIFOS ******* */
 const $myGifos = document.querySelector(".miGifos");
+
+/* ***** CREATE GIFOS ****** */
+
+const $createGifBtn = document.getElementById("createGif-btn");
+const $createGifSection = document.querySelector("#createGifSection");
+const $crearGifTitle = document.querySelector("#crearGif_title");
+const $crearGifText = document.querySelector("#crearGif_text");
+const $step1 = document.querySelector("#step-1");
+const $step2 = document.querySelector("#step-2");
+const $step3 = document.querySelector("#step-3");
+const $buttonComenzar = document.querySelector("#button--comenzar");
+const $buttonGrabar = document.querySelector("#button--grabar");
+const $buttonFinalizar = document.querySelector("#button--finalizar");
+const $buttonSubirGif = document.querySelector("#button--subirGif");
+const $timer = document.querySelector("#timer-recording");
+const $repeatBtn = document.querySelector("#repeatShot");
+const $overlay = document.querySelector("#overlay");
+const $overlayStatusIcon = document.querySelector("#overlay_status-icon");
+const $overlayStatusText = document.querySelector("#overlay_status-text");
+const $video = document.querySelector("#recording_video");
+const $recordedGifo = document.querySelector("#recorded_gifo");
+
+const $camera = document.querySelector("#camera");
+const $celuloide = document.querySelector("#celuloide");

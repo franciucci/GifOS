@@ -242,6 +242,94 @@
 			</section>
 			<!-- FINISH TRENDING GIFS -->
 
+			<!-- START CREATE GIFOS -->
+			<section class="crearGif hidden" id="createGifSection">
+
+				<div class="crearGif__container">
+		
+					<!-- cámara -->
+					<div class="crearGif__camara">
+						<img id="camera" src="assets/mobile/camara.svg" alt="cámara filmadora ilustrativa">
+						<img class="path" id="path" src="assets/mobile/element-luz-camara.svg" alt="luz de camara filmadora">
+					</div>
+		
+					<!-- recuadro de grabación -->
+					<div class="crearGif__recordingZone">
+		
+						<!-- bordes para estilos -->
+						<div class="corner top--left"></div>
+						<div class="corner top--right"></div>
+						<div class="corner bottom--left"></div>
+						<div class="corner bottom--right"></div>
+		
+		
+						<!-- recuadro de grabación -->
+						<div class="crearGif__recordingZone__content">
+		
+							<!-- TIENE HIDDEN -->
+							<h3 class="crearGif__title" id="crearGif_title">Aquí podrás <br> crear tus propios <span
+									class="aqua-text">GIFOS</span> </h3>
+							<!-- TIENE HIDDEN -->
+							<p class="crearGif__text" id="crearGif_text">¡Crea tu GIFO en solo 3 pasos! <br> (solo necesitas
+								una
+								cámara para grabar un video)</p>
+		
+							<!-- PARA QUE EL VIDEO SE ACOMODE ACA MIENTRAS GRABA -->
+		
+							<video class="recording_video hidden" src="" id="recording_video"></video>
+		
+							<!-- VER SI CONVIENE METER EL GIF DESDE ACA O HACER UNA FUNCION DE TEMPLATE -->
+							<img class="recorded_video hidden" src="" id="recorded_gifo" ></img>
+		
+							<!--  TIENE HIDDEN  -->
+							<div class="overlay" id="overlay">
+		
+								<div class="overlay__status-container" id="overlay-status-container">
+									<img src="assets/mobile/loader.svg" class="overlay__status-icon" alt="loading gifo"
+										id="overlay_status-icon">
+									<p class="overlay__status-text" id="overlay_status-text">Estamos subiendo tu GIFO</p>
+								</div>
+		
+							</div>
+		
+		
+		
+						</div>
+					</div>
+					<!-- celuloide -->
+		
+					<div class="crearGif__celluloidFilm">
+						<img class="celuloide" id="celuloide" src="assets/mobile/pelicula.svg" alt="celuloide ilustracion">
+					</div>
+		
+				</div>
+		
+				<div class="pagination">
+					<p class="step" id="step-1">1</p>
+					<p class="step" id="step-2">2</p>
+					<p class="step" id="step-3">3</p>
+				</div>
+		
+		
+				<div class="timer">
+					<p class="timer__recorder timer__text hidden" id="timer-recording">00:00:00</p>
+					<a href="" class="timer__repeatShot timer__text hidden" id="repeatShot">REPETIR CAPTURA</a>
+				</div>
+		
+				<!-- linea decorativa -->
+				<hr class="border">
+		
+				<!-- botones -->
+				<div class="button__container">
+					<a class="button" id="button--comenzar">COMENZAR</a>
+					<a class="button" id="button--grabar">GRABAR</a>
+					<a class="button" id="button--finalizar">FINALIZAR</a>
+					<a class="button" id="button--subirGif">SUBIR GIFO</a>
+				</div>
+			</section>
+			
+			<!-- FINISH CREATE GIFOS -->
+
 			<!-- STARTS SOCIAL FOOTER -->
 			<footer class="social">
 				<h2 class="social__title">Compartir en:</h2>
@@ -277,6 +365,7 @@
 		</div>
 
 		<!-- SCRIPTS -->
+		<script src="https://www.WebRTC-Experiment.com/RecordRTC.js"></script>
 		<script src="script/variables.js"></script>
 		<script src="script/main.js"></script>
 	</body>
