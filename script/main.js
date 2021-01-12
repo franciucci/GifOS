@@ -193,74 +193,48 @@ function displaySearchResults(results) {
 		const gifsContainer = document.createElement("div");
 		gifsContainer.setAttribute("class", "gifsContainer");
 		gifsContainer.innerHTML = `
-        <img class="gif" src="${results.data[i].images.downsized.url}">
-        `;
-		$searchGallery.appendChild(gifsContainer);
-
-		const gifHover = document.createElement("div");
-		gifHover.setAttribute("class", "gifHover hidden");
-		gifHover.setAttribute("id", `gifHover${i + offSet}`);
-
-		gifHover.innerHTML = `<div class="gifHover__icons">
-        <img class="gif-icons" src="assets/mobile/icon-fav-hover.svg" alt="icon fav" id="fav${
-					i + offSet
-				}">
-        <img class="gif-icons" src="assets/mobile/icon-download.svg" alt="icon download" onclick="downloadGif('${
-					results.data[i].images.original.url
-				}', '${results.data[i].title}')">
-        <img class="gif-icons" id="max-${
-					i + offSet
-				}" src="assets/mobile/icon-max.svg" alt="icon max">
-        </div>
+		<img class="gif" src="${
+			results.data[i].images.downsized.url
+		}" onclick="maximizeGif('${results.data[i].images.downsized.url}', '${
+			results.data[i].username
+		}', '${results.data[i].title}', '${i + offSet}')">
+		
+		<div class="gifHover">
+		<div class="gifHover__icons">
+		<img class="gif-icons" src="assets/mobile/icon-fav-hover.svg" alt="icon fav" id="fav${
+			i + offSet
+		}" onclick="addToFavouritesAndChangeIcon('${
+			results.data[i].images.downsized.url
+		}', '${results.data[i].title}', '${results.data[i].username}', 'fav${
+			i + offSet
+		}')">
+		<img class="gif-icons" src="assets/mobile/icon-download.svg" alt="icon download" onclick="downloadGif('${
+			results.data[i].images.original.url
+		}', '${results.data[i].title}')">
+		<img class="gif-icons" id="max-${
+			i + offSet
+		}" src="assets/mobile/icon-max.svg" alt="icon max" onclick="maximizeGif('${
+			results.data[i].images.downsized.url
+		}', '${results.data[i].username}', '${results.data[i].title}', '${
+			i + offSet
+		}')">
+		</div>
         <div class="gifHover__textBox">
         <p class="gifHover__textBox__text">${results.data[i].username}</p>
         <p class="gifHover__textBox__text">${results.data[i].title}</p>
-        </div>`;
-		gifsContainer.appendChild(gifHover);
+        </div>
+		</div>
 
-		// Maximizes gif when clicked max button
-		let maxIcon = document.getElementById(`max-${i + offSet}`);
-		maxIcon.setAttribute(
-			"onclick",
-			`maximizeGif('${results.data[i].images.downsized.url}', '${results.data[i].username}', '${results.data[i].title}', '${i}')`,
-		);
-
-		// In mobile maximizes gif when touched, in desktop
-		// display hover when mouse move over gif
-		gifsContainer.addEventListener("mouseover", () => {
-			if (window.innerWidth > 990) {
-				let hoverOn = document.getElementById(`gifHover${i + offSet}`);
-				hoverOn.classList.remove("hidden");
-			} else {
-				maximizeGif(
-					results.data[i].images.downsized.url,
-					results.data[i].username,
-					results.data[i].title,
-					i,
-				);
-			}
-		});
-		gifsContainer.addEventListener("mouseout", () => {
-			let hoverOut = document.getElementById(`gifHover${i + offSet}`);
-			hoverOut.classList.add("hidden");
-		});
-
-		// Adds a click event on close button to close maximized Gifs
-		$maxGifBtnClose.addEventListener("click", closeMax);
-
-		// Changes fav icon when clicked
-		let favIcon = document.getElementById(`fav${i + offSet}`);
-		favIcon.addEventListener("click", (e) => {
-			addToFavourites(
-				results.data[i].images.downsized.url,
-				results.data[i].title,
-				results.data[i].username,
-			);
-			changeFavIcon(e, results.data[i].images.downsized.url);
-		});
+		
+        `;
+		$searchGallery.appendChild(gifsContainer);
 	}
 }
 
+function addToFavouritesAndChangeIcon(url, title, username, id) {
+	addToFavourites(url, title, username);
+	changeFavIcon(id, url);
+}
 function cleanResults() {
 	$searchGallery.innerHTML = "";
 	$searchSection.classList.add("hidden");
@@ -382,11 +356,11 @@ function showTrendingGifs(json, i) {
 		let isFavHidden = $favouriteSection.classList.contains("hidden");
 		if (!isFavHidden) {
 			addToFavourites(json.images.downsized.url, json.title, json.username);
-			changeFavIcon(e, json.images.downsized.url);
+			changeFavIcon(`fav${i}`, json.images.downsized.url);
 			displayFavourites();
 		} else {
 			addToFavourites(json.images.downsized.url, json.title, json.username);
-			changeFavIcon(e, json.images.downsized.url);
+			changeFavIcon(`fav${i}`, json.images.downsized.url);
 		}
 	});
 }
@@ -468,7 +442,7 @@ function maximizeGif(src, user, title, index) {
 			displayFavourites();
 		} else {
 			addToFavourites(src, title, user);
-			changeFavIcon(e, src);
+			changeFavIcon(`maxFav-icon${index}`, src);
 			changeHoverIcon(index, src);
 		}
 	});
@@ -535,8 +509,8 @@ function removeFavourite(obj) {
 }
 
 // Changes fav icon when clicked
-function changeFavIcon(e, url) {
-	let tag = e.target;
+function changeFavIcon(id, url) {
+	let tag = document.getElementById(id);
 	const isFav = favArray.some((el) => el.gif === url);
 	if (isFav) {
 		tag.src = "assets/mobile/icon-fav-active.svg";
