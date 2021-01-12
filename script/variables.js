@@ -39,9 +39,8 @@ const $maxGifSection = document.getElementById("maximized-container");
 const $maxGifContainer = document.getElementById("maximizedGifs__gif");
 const $maxGifCloseContainer = document.getElementById("maximizedGifs__close");
 const $maxGifIcons = document.getElementById("maximizedGifs__icons");
+const $maxIcons = document.querySelector(".maxGif-icons");
 const $maxGifTitle = document.getElementById("maxGif-title");
 const $maxGifUser = document.getElementById("maxGif-user");
 
 const $maxGifBtnClose = document.querySelector(".maxGif-btnClose");
-const $maxDownload = document.getElementById("download-btn");
-const $maxFavIcon = document.getElementById("maxFav-icon");
