@@ -106,6 +106,13 @@
 		font-weight: 600;
 		color: $main_color;
 		cursor: pointer;
+		&:hover {
+			border-bottom: 2px solid $secundary_color;
+		}
+		&:active {
+			color: grey;
+			border: none;
+		}
 	}
 	#createGif-btn {
 		padding: 0.9375rem;
@@ -114,6 +121,13 @@
 		border: 1px solid $main_color;
 		border-radius: 50px;
 		cursor: pointer;
+		&:hover {
+			background-color: $main_color;
+		}
+		&:active {
+			background-color: $lightGray;
+			border: none;
+		}
 	}
 }
 

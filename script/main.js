@@ -741,20 +741,25 @@ $createGifBtn.addEventListener("click", () => {
 	$carouselSection.classList.add("hidden");
 	$myGifosSection.classList.add("hidden");
 });
-
+$createGifBtn.addEventListener("mouseover", () => {
+	$createGifBtn.src = "assets/mobile/button-crear-gifo-hover.svg";
+});
+$createGifBtn.addEventListener("mouseout", () => {
+	$createGifBtn.src = "assets/mobile/button-crear-gifo.svg";
+});
 let recorder;
 let blob;
 let form = new FormData();
 let arrMyGifos = [];
 
-// seteo del timer
+// Sets timer
 let timer;
 let hours = "00";
 let minutes = "00";
 let seconds = "00";
 
-// función que ejecuta la cámara y se setea la API
-const getStreamAndRecord = async () => {
+// Executes camera and sets API
+async function getStreamAndRecord() {
 	$crearGifTitle.innerHTML = `¿Nos das acceso <br> a tu cámara?`;
 	$crearGifText.innerHTML = `El acceso a tu camara será válido sólo <br> por el tiempo en el que estés creando el GIFO.`;
 	$buttonComenzar.style.visibility = "hidden";
@@ -790,13 +795,13 @@ const getStreamAndRecord = async () => {
 			});
 		})
 		.catch((err) => console.log(err));
-};
+}
 
-// Cuando clickea comenzar, se ejecuta la cámara y se setea la API
+// When click on start, it executes camera and sets API
 $buttonComenzar.addEventListener("click", getStreamAndRecord);
 
-// función para empezar
-const createGifo = () => {
+// Start the recording
+function createGifo() {
 	console.log("está grabando");
 	$buttonGrabar.style.display = "none";
 	$buttonFinalizar.style.display = "block";
@@ -804,12 +809,12 @@ const createGifo = () => {
 	$repeatBtn.classList.add("hidden");
 	recorder.startRecording();
 	timer = setInterval(timerActive, 1000);
-};
+}
 
 $buttonGrabar.addEventListener("click", createGifo);
 
-// función para parar la grabación
-const stopCreatingGif = () => {
+// Stop the recording
+function stopCreatingGif() {
 	$video.classList.add("hidden");
 	$recordedGifo.classList.remove("hidden");
 	recorder.stopRecording(() => {
@@ -831,12 +836,12 @@ const stopCreatingGif = () => {
 	minutes = "00";
 	seconds = "00";
 	$timer.innerText = `${hours}:${minutes}:${seconds}`;
-};
+}
 
 $buttonFinalizar.addEventListener("click", stopCreatingGif);
 
-// función para subir a Giphy y almacenar el gif en Mis gifos
-const uploeadCreatedGif = async () => {
+// Function to upload to Giphy and store in my gifos
+async function uploeadCreatedGif() {
 	$overlay.style.display = "flex";
 	$step2.classList.remove("step-active");
 	$step3.classList.add("step-active");
@@ -868,12 +873,12 @@ const uploeadCreatedGif = async () => {
 		.catch((err) => {
 			console.error(err);
 		});
-};
+}
 
 $buttonSubirGif.addEventListener("click", uploeadCreatedGif);
 
-// función para repetir
-const repeatRecordingGif = (event) => {
+// Repeat recording
+function repeatRecordingGif(event) {
 	event.preventDefault();
 	recorder.clearRecordedData();
 	$step2.classList.add("step-active");
@@ -906,11 +911,11 @@ const repeatRecordingGif = (event) => {
 			});
 		})
 		.catch((err) => console.log(err));
-};
+}
 $repeatBtn.addEventListener("click", repeatRecordingGif);
 
-// función para descargar el gif creado
-const downloadCreatedGif = async (myGifId) => {
+// Download created gifos
+async function downloadCreatedGif(myGifId) {
 	await fetch(`https://media.giphy.com/media/${myGifId}/giphy.gif`)
 		.then((response) => response.blob())
 		.then((blob) => {
@@ -918,9 +923,9 @@ const downloadCreatedGif = async (myGifId) => {
 			forceDownload(blobUrl, "my-gif.gif");
 		})
 		.catch((err) => console.log(err));
-};
+}
 
-// función para el timer
+// Timer function
 function timerActive() {
 	seconds++;
 
@@ -944,6 +949,8 @@ function timerActive() {
 }
 
 /* ********************************* MY GIFOS ******************************** */
+
+// Display gifos section
 function displayMisGifosSection() {
 	$myGifosSection.classList.remove("hidden");
 	$heroSection.classList.add("hidden");
@@ -968,6 +975,7 @@ $brgMyGifosMenu.addEventListener("click", (e) => {
 	displayMisGifosSection(e);
 });
 
+// Display gifos created by users
 function displayMiGifos() {
 	$myGifosGallery.innerHTML = "";
 
@@ -1084,9 +1092,48 @@ function maximizeMyGifos(src, user, title, index, id) {
 	});
 }
 
+// Remove gifos created by user
 function removeMyGifos(gifId) {
 	const newGifosArray = arrMyGifos.filter((item) => item !== gifId);
 	arrMyGifos = [...newGifosArray];
 	localStorage.setItem("MyGifs", JSON.stringify(arrMyGifos));
 	displayMisGifosSection();
 }
+
+/* ************* DARK MODE ************ */
+/* function switchTheme() {
+	document.body.classList.toggle("darkMode");
+
+	// Guarda la elección en el localStorage
+	if (document.body.classList.contains("darkMode")) {
+		localStorage.setItem("dark-mode", true);
+	} else {
+		localStorage.setItem("dark-mode", false);
+	}
+}
+
+$switchThemeBtn.addEventListener("click", switchTheme); */
+
+// Sets style properties
+/* function setLocalStorageTheme() {
+	if (localStorage.getItem("dark-mode") == "true") {
+		document.body.classList.add("darkMode");
+		$switchThemeBtn.textContent = "Modo Diurno";
+		$logo.src = "assets/logo-mobile-modo-noct.svg";
+		$crearGifBtn.src = "assets/CTA-crar-gifo-modo-noc.svg";
+		$burgerMenu.src = "assets/burger-modo-noct.svg";
+		$navbarSearchBtn.src = "assets/icon-search-mod-noc.svg";
+		$navbarSearchCloseBtn.src = "assets/close-modo-noct.svg";
+		$searchBtn.src = "assets/icon-search-mod-noc.svg";
+		$searchCloseBtn.src = "assets/close-modo-noct.svg";
+		$previousBtn.src = "assets/button-slider-left-md-noct.svg";
+		$nextBtn.src = "assets/button-slider-right-md-noct.svg";
+		$camera.src = "assets/camara-modo-noc.svg";
+		$celuloide.src = "assets/pelicula-modo-noc.svg";
+	} else {
+		document.body.classList.remove("darkMode");
+		$switchThemeBtn.textContent = "Modo Nocturno";
+	}
+}
+
+setLocalStorageTheme(); */

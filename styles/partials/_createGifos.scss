@@ -254,4 +254,8 @@
 	color: $main_color;
 	font-size: 0.8125rem;
 	cursor: pointer;
+	&:hover {
+		background-color: $main_color;
+		color: white;
+	}
 }
