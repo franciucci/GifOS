@@ -1,6 +1,6 @@
 /* ********* API ********** */
 
-const apiKey = "nENWhpLbxMys5qAUYSJiwgsHsdfA0cL4";
+const apiKey = "6NaCjN010QPDTAvzFakCdJqraaRvPZsB";
 
 // Endpoint for trendings
 const trendingEndpoint = "https://api.giphy.com/v1/gifs/trending";
