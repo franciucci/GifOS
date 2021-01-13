@@ -11,6 +11,7 @@ function goToHome() {
 	$searchSection.classList.add("hidden");
 	$favouriteSection.classList.add("hidden");
 	$carouselSection.classList.remove("hidden");
+	$myGifosSection.classList.add("hidden");
 }
 
 // Burger menu
@@ -352,7 +353,7 @@ function showTrendingGifs(json, i) {
 
 	// Changes fav icon when clicked
 	let favIcon = document.getElementById(`fav${i}`);
-	favIcon.addEventListener("click", (e) => {
+	favIcon.addEventListener("click", () => {
 		let isFavHidden = $favouriteSection.classList.contains("hidden");
 		if (!isFavHidden) {
 			addToFavourites(json.images.downsized.url, json.title, json.username);
@@ -544,6 +545,7 @@ function activeFavourites() {
 	$searchBarSection.classList.add("hidden");
 	$trendingTagsSection.classList.add("hidden");
 	$searchSection.classList.add("hidden");
+	$myGifosSection.classList.add("hidden");
 	cleanFavourites();
 	displayFavourites();
 }
@@ -558,6 +560,8 @@ function displayFavourites() {
 
 	if (favourites.length < 12) {
 		$favViewMore.style.display = "none";
+	} else {
+		$favViewMore.style.display = "block";
 	}
 
 	if (favourites.length === 0) {
@@ -593,65 +597,38 @@ function displayFavGifs(favourites) {
 	for (let i = 0; i < favourites.length; i++) {
 		const favGifContainer = document.createElement("div");
 		favGifContainer.setAttribute("class", "favGifContainer");
-
 		favGifContainer.innerHTML = `
-		<img class="favGifContainer__gif" src="${favourites[i].gif}" alt="${favourites[i].title}">
-		`;
-		$favGifs.appendChild(favGifContainer);
-
-		// Creates a hover over the gif with gif's info and action buttons
-		const favHover = document.createElement("div");
-		favHover.setAttribute("class", "favHover hidden");
-		favHover.setAttribute("id", `favHover${i + favOffset}`);
-
-		favHover.innerHTML = `<div class="favHover__icons">
+		<img class="gif" src="${favourites[i].gif}" onclick="maximizeFavGif('${
+			favourites[i].gif
+		}', '${favourites[i].username}', '${favourites[i].title}', '${
+			i + favOffset
+		}')">
+		
+		<div class="favHover">
+		<div class="favHover__icons">
 		<img class="gif-icons" src="assets/mobile/icon_trash.svg" alt="icon trash" id="trash${
 			i + favOffset
-		}">
+		}" >
 		<img class="gif-icons" src="assets/mobile/icon-download.svg" alt="icon download" onclick="downloadGif('${
 			favourites[i].gif
 		}', '${favourites[i].title}')">
 		<img class="gif-icons" id="max-${
 			i + favOffset
-		}" src="assets/mobile/icon-max.svg" alt="icon max">
+		}" src="assets/mobile/icon-max.svg" alt="icon max" onclick="maximizeFavGif('${
+			favourites[i].gif
+		}', '${favourites[i].username}', '${favourites[i].title}', '${
+			i + favOffset
+		}')">
 		</div>
-		<div class="favHover__textBox">
-		<p class="favHover__textBox__text">${favourites[i].username}</p>
-		<p class="favHover__textBox__text">${favourites[i].title}</p>
-		</div>`;
-		favGifContainer.appendChild(favHover);
+        <div class="favHover__textBox">
+        <p class="favHover__textBox__text">${favourites[i].username}</p>
+        <p class="favHover__textBox__text">${favourites[i].title}</p>
+        </div>
+		</div>
 
-		// Maximizes gif when clicked max button
-		let maxIcon = document.getElementById(`max-${i + favOffset}`);
-		maxIcon.setAttribute(
-			"onclick",
-			`maximizeFavGif('${favourites[i].gif}', '${favourites[i].username}', '${favourites[i].title}', '${i}')`,
-		);
-
-		// In mobile maximizes gif when touched, in desktop
-		// display hover when mouse move over gif
-		favGifContainer.addEventListener("mouseover", (e) => {
-			if (window.innerWidth > 990) {
-				let hoverOn = document.getElementById(`favHover${i + favOffset}`);
-				hoverOn.classList.remove("hidden");
-			} else {
-				maximizeFavGif(
-					favourites[i].gif,
-					favourites[i].username,
-					favourites[i].title,
-					i,
-				);
-			}
-		});
-		favGifContainer.addEventListener("mouseout", (e) => {
-			let hoverOut = document.getElementById(`favHover${i + favOffset}`);
-			hoverOut.classList.add("hidden");
-		});
-
-		// Adds a click event on close button to close maximized Gifs
-		$maxGifBtnClose.addEventListener("click", closeMax);
-
-		// Removes gif from favourites
+		
+        `;
+		$favGifs.appendChild(favGifContainer);
 		let trashIcon = document.getElementById(`trash${i + favOffset}`);
 		trashIcon.addEventListener("click", () => {
 			removeFavourite(favourites[i]);
