@@ -406,18 +406,27 @@ function maximizeGif(src, user, title, index) {
     <img class="maxGif" src="${src}" alt="${title}">
     `;
 
-	// Check if gif is favourite or not and renders the icons
-	const isFav = favArray.some((el) => el.gif === src);
-	if (isFav) {
-		$maxIcons.innerHTML = `
-			<img src="assets/mobile/icon-fav-active.svg" alt="add to favourite" id="maxFav-icon${index}"/>
+	// Check if there is any favourite in localStorage
+	const favIsEmpty = JSON.parse(localStorage.getItem("favourites"));
+	if (Array.isArray(favIsEmpty) && favIsEmpty.length !== 0) {
+		const isFav = favArray.some((el) => el.gif === src);
+		// Check if gif is favourite or not and renders the icons
+		if (isFav) {
+			$maxIcons.innerHTML = `
+				<img src="assets/mobile/icon-fav-active.svg" alt="add to favourite" id="maxFav-icon${index}"/>
+				<img src="./assets/mobile/icon-download.svg" alt="download gif" id="download-btn${index}"/>
+				`;
+		} else {
+			$maxIcons.innerHTML = `
+			<img src="assets/mobile/icon-fav-hover.svg" alt="add to favourite" id="maxFav-icon${index}"/>
 			<img src="./assets/mobile/icon-download.svg" alt="download gif" id="download-btn${index}"/>
 			`;
+		}
 	} else {
 		$maxIcons.innerHTML = `
-        <img src="assets/mobile/icon-fav-hover.svg" alt="add to favourite" id="maxFav-icon${index}"/>
-        <img src="./assets/mobile/icon-download.svg" alt="download gif" id="download-btn${index}"/>
-        `;
+			<img src="assets/mobile/icon-fav-hover.svg" alt="add to favourite" id="maxFav-icon${index}"/>
+			<img src="./assets/mobile/icon-download.svg" alt="download gif" id="download-btn${index}"/>
+			`;
 	}
 
 	// Display maximized gif

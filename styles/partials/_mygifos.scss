@@ -25,6 +25,9 @@
 			font-weight: 600;
 			color: $secundary_color;
 		}
+		&__img {
+			padding: 20%;
+		}
 	}
 	&__btn {
 		@extend %btn;

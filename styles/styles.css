@@ -534,6 +534,7 @@ body.darkMode .trending-gifs__text {
 
 .trending-gifs__carousel .btn-carousel .btnImg-carousel {
   margin: 0 auto;
+  padding: 30%;
 }
 
 .gifCard {
@@ -1043,6 +1044,10 @@ body.darkMode .searchs__btn:hover {
   color: #50e3c2;
 }
 
+.miGifos__empty__img {
+  padding: 20%;
+}
+
 .miGifos__gifs__gallery {
   padding: 1.6%;
   margin: 0 5.6% 3.3%;
@@ -1197,10 +1202,6 @@ body.darkMode {
   left: 0;
 }
 
-body.darkMode .maximized-container {
-  background-color: #37383c;
-}
-
 .maximizedGifs {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1271,26 +1272,20 @@ body.darkMode .maximized-container {
 }
 
 .maximizedGifs__icons .maxGif-icons {
-  width: 30%;
+  padding: 10px;
+  width: 20%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-}
-
-body.darkMode .maximizedGifs__icons .maxGif-icons {
-  color: #fff;
 }
 
 .maximizedGifs__icons .maxGif-icons img {
-  padding: 0 5px;
+  padding: 5px;
   cursor: pointer;
 }
 
 .maximizedGifs__icons .maxGif-data {
-  width: 70%;
+  width: 80%;
 }
 
 #maxGif-title,

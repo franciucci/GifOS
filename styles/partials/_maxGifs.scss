@@ -11,9 +11,6 @@
 	width: 100%;
 	top: 0;
 	left: 0;
-	body.darkMode & {
-		background-color: $backgroundDark;
-	}
 }
 .maximizedGifs {
 	display: flex;
@@ -53,19 +50,16 @@
 			width: 100%;
 		}
 		.maxGif-icons {
-			width: 30%;
+			padding: 10px;
+			width: 20%;
 			display: flex;
-			justify-content: flex-end;
-			body.darkMode & {
-				color: #fff;
-			}
 			img {
-				padding: 0 5px;
+				padding: 5px;
 				cursor: pointer;
 			}
 		}
 		.maxGif-data {
-			width: 70%;
+			width: 80%;
 		}
 	}
 }
