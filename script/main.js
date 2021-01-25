@@ -443,11 +443,11 @@ function maximizeGif(src, user, title, index) {
 
 	// Add action to favourite button
 	let favIcon = document.getElementById(`maxFav-icon${index}`);
-	favIcon.addEventListener("click", (e) => {
+	favIcon.addEventListener("click", () => {
 		let isFavHidden = $favouriteSection.classList.contains("hidden");
 		if (!isFavHidden) {
 			addToFavourites(src, title, user);
-			changeFavIcon(e, src);
+			changeFavIcon(`maxFav-icon${index}`, src);
 			changeHoverIcon(index, src);
 			displayFavourites();
 		} else {
