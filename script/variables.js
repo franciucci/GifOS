@@ -35,6 +35,9 @@ const $searchListIcon = document.getElementById("searchList-icon");
 const $searchIcon = document.getElementById("search-icon");
 const $closeSearchIcon = document.getElementById("close-search-icon");
 
+const $darkModeToggle = document.getElementById("night-mode");
+const $mobileDarkModeToggle = document.getElementById("night-mode-brg");
+
 // Trend carousel
 const $carouselSection = document.querySelector(".trending-gifs");
 const $trendingCarousel = document.getElementById("trending-carousel");

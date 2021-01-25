@@ -9,3 +9,11 @@
 .hidden {
 	display: none;
 }
+body {
+	font-family: $text_font;
+	color: $main_color;
+	&.darkMode {
+		background-color: $backgroundDark;
+		color: #fff;
+	}
+}

@@ -11,6 +11,9 @@
 	width: 100%;
 	top: 0;
 	left: 0;
+	body.darkMode & {
+		background-color: $backgroundDark;
+	}
 }
 .maximizedGifs {
 	display: flex;
@@ -53,6 +56,9 @@
 			width: 30%;
 			display: flex;
 			justify-content: flex-end;
+			body.darkMode & {
+				color: #fff;
+			}
 			img {
 				padding: 0 5px;
 				cursor: pointer;

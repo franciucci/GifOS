@@ -4,6 +4,9 @@
 	background-color: $background-color;
 	margin-top: 3.7%;
 	padding: 3.8% 0 6.8%;
+	body.darkMode & {
+		background-color: $backgroundBlack;
+	}
 	&__title {
 		font-family: $title_font;
 		color: $main_color;
@@ -19,6 +22,9 @@
 		text-align: center;
 		line-height: 1.4375rem;
 		margin: 0.6% 5.6% 2.7%;
+		body.darkMode & {
+			color: #fff;
+		}
 		&__blockText {
 			display: block;
 		}
