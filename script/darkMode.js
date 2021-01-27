@@ -62,5 +62,5 @@ function changeIconsToLight() {
 	$camera.src = "assets/mobile/camara.svg";
 	$celuloide.src = "assets/mobile/pelicula.svg";
 	$maxGifBtnClose.src = "assets/mobile/close.svg";
-	$burgerMenu.src = "assets/mobile/burger-dark.svg";
+	$burgerMenu.src = "assets/mobile/burger.svg";
 }
