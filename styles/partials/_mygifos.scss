@@ -12,6 +12,9 @@
 		font-weight: bold;
 		font-size: 1.25rem;
 		line-height: 1.875rem;
+		body.dark & {
+			color: #fff;
+		}
 	}
 
 	&__empty {

@@ -18,6 +18,8 @@ const trendingTagsEndpoint = "https://api.giphy.com/v1/trending/searches";
 const uploadGifEndpoint = "https://upload.giphy.com/v1/gifs";
 
 /* ******** DOM ITEMS ********* */
+const $burgerMenu = document.getElementById("burger");
+
 const $mainPage = document.querySelector(".main");
 
 const $heroSection = document.querySelector(".hero");
@@ -35,15 +37,14 @@ const $searchListIcon = document.getElementById("searchList-icon");
 const $searchIcon = document.getElementById("search-icon");
 const $closeSearchIcon = document.getElementById("close-search-icon");
 
-const $darkModeToggle = document.getElementById("night-mode");
-const $mobileDarkModeToggle = document.getElementById("night-mode-brg");
-
 // Trend carousel
 const $carouselSection = document.querySelector(".trending-gifs");
 const $trendingCarousel = document.getElementById("trending-carousel");
 const $trendingTrack = document.getElementById("track");
 const $nextBtn = document.getElementById("btn-next");
 const $prevBtn = document.getElementById("btn-prev");
+const $buttonPrevImg = document.getElementById("btnImg-prev");
+const $buttonNextImg = document.getElementById("btnImg-next");
 
 // Maximized gif
 const $maxGifSection = document.getElementById("maximized-container");
@@ -111,3 +112,8 @@ const $recordedGifo = document.querySelector("#recorded_gifo");
 
 const $camera = document.querySelector("#camera");
 const $celuloide = document.querySelector("#celuloide");
+
+/* ****** DARK MODE ****** */
+
+const $darkModeToggle = document.getElementById("night-mode");
+const $mobileDarkModeToggle = document.getElementById("night-mode-brg");

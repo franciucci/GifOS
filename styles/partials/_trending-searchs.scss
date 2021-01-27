@@ -7,6 +7,10 @@
 	line-height: 1.5625rem;
 	text-align: center;
 	margin: 2.6%;
+	transition: 0.3s ease all;
+	body.dark & {
+		color: #ffffff;
+	}
 }
 .trending-searchs__text {
 	font-family: "Montserrat", sans-serif;
@@ -15,4 +19,8 @@
 	color: $main_color;
 	text-align: center;
 	margin: 0.2% 20% 3.7%;
+	transition: 0.3s ease all;
+	body.dark & {
+		color: #ffffff;
+	}
 }

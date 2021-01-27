@@ -17,6 +17,9 @@
 		font-family: $title_font;
 		color: $main_color;
 		font-size: 1.5625rem;
+		body.dark & {
+			color: #fff;
+		}
 	}
 	&__gallery {
 		padding: 1.6%;
@@ -28,12 +31,13 @@
 	}
 	&__btn {
 		@extend %btn;
-		body.darkMode & {
+		body.dark & {
 			border: 2px solid #fff;
 			color: #fff;
 			&:hover {
-				background-color: $main_color;
+				background-color: $backgroundBlack;
 				color: white;
+				cursor: pointer;
 			}
 		}
 	}

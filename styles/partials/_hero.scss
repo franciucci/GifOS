@@ -1,22 +1,27 @@
 .hero {
-  margin: 15px 11.7% 0 11.7%;
-  padding-top: 90px;
-  &__text {
-    text-align: center;
-    font-family: "Montserrat", sans-serif;
-    font-size: 1.5625rem;
-    font-weight: 600;
-    line-height: 2.0625rem;
-    color: #572ee5;
-    &__gifos {
-      color: #50e3c2;
-    }
-  }
-  #hero-img {
-    display: block;
-    margin: 20px auto 0 auto;
-    max-width: 273px;
-    max-height: 130px;
-    margin: 0 auto;
-  }
+	margin: 15px 11.7% 0 11.7%;
+	padding-top: 90px;
+	&__text {
+		text-align: center;
+		font-family: "Montserrat", sans-serif;
+		font-size: 1.5625rem;
+		font-weight: 600;
+		line-height: 2.0625rem;
+		color: #572ee5;
+		transition: 0.3s ease all;
+
+		body.dark & {
+			color: #fff;
+		}
+		&__gifos {
+			color: #50e3c2;
+		}
+	}
+	#hero-img {
+		display: block;
+		margin: 20px auto 0 auto;
+		max-width: 273px;
+		max-height: 130px;
+		margin: 0 auto;
+	}
 }

@@ -32,12 +32,24 @@ function showMenu() {
 // This function switches between the burger menu icon and the button close icon
 function changeBurgerMenu() {
 	if (
-		burgerMenu.src === "https://gif-os.netlify.app/assets/mobile/burger.svg"
+		burgerMenu.src === "https://gif-os.netlify.app/assets/mobile/burger.svg" ||
+		burgerMenu.src ===
+			"https://gif-os.netlify.app/assets/mobile/burger-dark.svg"
 	) {
-		burgerMenu.src =
-			"https://gif-os.netlify.app/assets/mobile/button-close.svg";
+		if (localStorage.getItem("dark-mode") === "true") {
+			burgerMenu.src =
+				"https://gif-os.netlify.app/assets/mobile/button-close-dark.svg";
+		} else {
+			burgerMenu.src =
+				"https://gif-os.netlify.app/assets/mobile/button-close.svg";
+		}
 	} else {
-		burgerMenu.src = "https://gif-os.netlify.app/assets/mobile/burger.svg";
+		if (localStorage.getItem("dark-mode") === "true") {
+			burgerMenu.src =
+				"https://gif-os.netlify.app/assets/mobile/burger-dark.svg";
+		} else {
+			burgerMenu.src = "https://gif-os.netlify.app/assets/mobile/burger.svg";
+		}
 	}
 }
 
@@ -371,16 +383,32 @@ function hoverCarouselButton() {
 	let buttonPrev = document.getElementById("btnImg-prev");
 	let buttonNext = document.getElementById("btnImg-next");
 	$prevBtn.addEventListener("mouseover", () => {
-		buttonPrev.src = "./assets/mobile/button-left-hover.svg";
+		if (localStorage.getItem("dark-mode") === "true") {
+			buttonPrev.src = "./assets/mobile/button-left-dark-hover.svg";
+		} else {
+			buttonPrev.src = "./assets/mobile/button-left-hover.svg";
+		}
 	});
 	$prevBtn.addEventListener("mouseout", () => {
-		buttonPrev.src = "./assets/mobile/button-left.svg";
+		if (localStorage.getItem("dark-mode") === "true") {
+			buttonPrev.src = "./assets/mobile/button-left-dark.svg";
+		} else {
+			buttonPrev.src = "./assets/mobile/button-left.svg";
+		}
 	});
 	$nextBtn.addEventListener("mouseover", () => {
-		buttonNext.src = "./assets/mobile/button-right-hover.svg";
+		if (localStorage.getItem("dark-mode") === "true") {
+			buttonNext.src = "./assets/mobile/button-right-dark-hover.svg";
+		} else {
+			buttonNext.src = "./assets/mobile/button-right-hover.svg";
+		}
 	});
 	$nextBtn.addEventListener("mouseout", () => {
-		buttonNext.src = "./assets/mobile/button-right.svg";
+		if (localStorage.getItem("dark-mode") === "true") {
+			buttonNext.src = "./assets/mobile/button-right-dark.svg";
+		} else {
+			buttonNext.src = "./assets/mobile/button-right.svg";
+		}
 	});
 }
 
@@ -412,21 +440,42 @@ function maximizeGif(src, user, title, index) {
 		const isFav = favArray.some((el) => el.gif === src);
 		// Check if gif is favourite or not and renders the icons
 		if (isFav) {
-			$maxIcons.innerHTML = `
+			if (localStorage.getItem("dark-mode")) {
+				$maxIcons.innerHTML = `
+				<img src="assets/mobile/icon-fav-active-dark.svg" alt="add to favourite" id="maxFav-icon${index}"/>
+				<img src="./assets/mobile/icon-download-dark.svg" alt="download gif" id="download-btn${index}"/>
+				`;
+			} else {
+				$maxIcons.innerHTML = `
 				<img src="assets/mobile/icon-fav-active.svg" alt="add to favourite" id="maxFav-icon${index}"/>
 				<img src="./assets/mobile/icon-download.svg" alt="download gif" id="download-btn${index}"/>
 				`;
+			}
+		} else {
+			if (localStorage.getItem("dark-mode")) {
+				$maxIcons.innerHTML = `
+			<img src="assets/mobile/icon-fav-hover-dark.svg" alt="add to favourite" id="maxFav-icon${index}"/>
+			<img src="./assets/mobile/icon-download-dark.svg" alt="download gif" id="download-btn${index}"/>
+			`;
+			} else {
+				$maxIcons.innerHTML = `
+				<img src="assets/mobile/icon-fav-hover.svg" alt="add to favourite" id="maxFav-icon${index}"/>
+				<img src="./assets/mobile/icon-download.svg" alt="download gif" id="download-btn${index}"/>
+				`;
+			}
+		}
+	} else {
+		if (localStorage.getItem("dark-mode")) {
+			$maxIcons.innerHTML = `
+			<img src="assets/mobile/icon-fav-hover-dark.svg" alt="add to favourite" id="maxFav-icon${index}"/>
+			<img src="./assets/mobile/icon-download-dark.svg" alt="download gif" id="download-btn${index}"/>
+			`;
 		} else {
 			$maxIcons.innerHTML = `
 			<img src="assets/mobile/icon-fav-hover.svg" alt="add to favourite" id="maxFav-icon${index}"/>
 			<img src="./assets/mobile/icon-download.svg" alt="download gif" id="download-btn${index}"/>
 			`;
 		}
-	} else {
-		$maxIcons.innerHTML = `
-			<img src="assets/mobile/icon-fav-hover.svg" alt="add to favourite" id="maxFav-icon${index}"/>
-			<img src="./assets/mobile/icon-download.svg" alt="download gif" id="download-btn${index}"/>
-			`;
 	}
 
 	// Display maximized gif
@@ -702,10 +751,18 @@ $createGifBtn.addEventListener("click", () => {
 	$myGifosSection.classList.add("hidden");
 });
 $createGifBtn.addEventListener("mouseover", () => {
-	$createGifBtn.src = "assets/mobile/button-crear-gifo-hover.svg";
+	if (localStorage.getItem("dark-mode") === "true") {
+		$createGifBtn.src = "assets/mobile/button-crear-gifo-dark-hover.svg";
+	} else {
+		$createGifBtn.src = "assets/mobile/button-crear-gifo-hover.svg";
+	}
 });
 $createGifBtn.addEventListener("mouseout", () => {
-	$createGifBtn.src = "assets/mobile/button-crear-gifo.svg";
+	if (localStorage.getItem("dark-mode") === "true") {
+		$createGifBtn.src = "assets/mobile/button-crear-gifo-dark.svg";
+	} else {
+		$createGifBtn.src = "assets/mobile/button-crear-gifo.svg";
+	}
 });
 let recorder;
 let blob;

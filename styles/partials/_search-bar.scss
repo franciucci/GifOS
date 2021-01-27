@@ -3,21 +3,23 @@
 	width: 80%;
 	border: 1px solid #572ee5;
 	border-radius: 27px;
+	transition: 0.3s ease all;
+	body.dark & {
+		border: 1px solid #fff;
+	}
 	&__input {
 		padding: 1.2% 2% 1.2% 2%;
 		display: flex;
 		justify-content: space-between;
 		margin-top: 0;
-		body.darkMode & {
-			border: 1px solid #fff;
-		}
 		#search-input {
 			padding: 0 2%;
 			width: 100%;
 			border: none;
 			outline: none;
-			body.darkMode & {
+			body.dark & {
 				background-color: transparent;
+				color: #fff;
 			}
 		}
 		#search-icon,
@@ -31,9 +33,9 @@
 	&__suggestion {
 		margin: 0 auto;
 		padding: 0 5%;
-		body.darkMode & {
+		/* body.dark & {
 			border: 1px solid #fff;
-		}
+		} */
 		&__border {
 			width: 100%;
 			border-top: 1px solid gray;
@@ -47,6 +49,9 @@
 				font-family: $text_font;
 				font-size: 0.875rem;
 				color: gray;
+				body.dark & {
+					color: #9cafc3;
+				}
 				.searchList-icon {
 					margin: 0 2px;
 					height: 12px;

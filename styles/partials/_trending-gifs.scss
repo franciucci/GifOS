@@ -4,7 +4,8 @@
 	background-color: $background-color;
 	margin-top: 3.7%;
 	padding: 3.8% 0 6.8%;
-	body.darkMode & {
+	transition: 0.3s ease all;
+	body.dark & {
 		background-color: $backgroundBlack;
 	}
 	&__title {
@@ -15,6 +16,10 @@
 		line-height: 1.875rem;
 		text-align: center;
 		padding: 3.8% 0 0.6%;
+		transition: 0.3s ease all;
+		body.dark & {
+			color: #fff;
+		}
 	}
 	&__text {
 		font-family: $text_font;
@@ -22,7 +27,8 @@
 		text-align: center;
 		line-height: 1.4375rem;
 		margin: 0.6% 5.6% 2.7%;
-		body.darkMode & {
+		transition: 0.3s ease all;
+		body.dark & {
 			color: #fff;
 		}
 		&__blockText {
@@ -59,6 +65,13 @@
 			}
 			&:hover {
 				background-color: $main_color;
+			}
+			body.dark & {
+				background-color: transparent;
+				border: 1px solid #fff;
+				&:hover {
+					background-color: #fff;
+				}
 			}
 			cursor: pointer;
 			.btnImg-carousel {

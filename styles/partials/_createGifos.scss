@@ -48,7 +48,7 @@
 		align-items: center;
 		position: relative;
 
-		body.darkMode & {
+		body.dark & {
 			border: 1px solid #fff;
 		}
 	}
@@ -57,6 +57,9 @@
 		font-family: $title_font;
 		font-size: 1.5625rem;
 		color: $main_color;
+		body.dark & {
+			color: #fff;
+		}
 		.aqua-text {
 			color: $secundary_color;
 		}
@@ -68,9 +71,9 @@
 		font-family: $text_font;
 		font-size: 1rem;
 
-		/* body.darkMode & {
+		body.dark & {
 			color: #fff;
-		} */
+		}
 	}
 
 	.recording_video {
@@ -129,7 +132,7 @@
 			border-radius: 50%;
 			font-size: 1.2em;
 
-			body.darkMode & {
+			body.dark & {
 				border: 1px solid #fff;
 			}
 		}
@@ -137,11 +140,18 @@
 		.step-active {
 			background-color: $main_color;
 			color: #fff;
+			body.dark & {
+				background-color: #fff;
+				color: #000;
+			}
 		}
 	}
 	#repeatShot {
 		color: $main_color;
 		text-decoration: none;
+		body.dark & {
+			color: #fff;
+		}
 
 		&:hover {
 			border-bottom: 2px solid $secundary_color;
@@ -163,7 +173,6 @@
 		.timer__text {
 			font-family: $text_font;
 			font-size: 16px;
-
 			line-height: 22px;
 		}
 	}
@@ -237,6 +246,9 @@
 		width: 58%;
 		margin: 0 auto;
 		border: 2px solid $main_color;
+		body.dark & {
+			border: 2px solid #fff;
+		}
 	}
 }
 .button__container {
@@ -257,5 +269,12 @@
 	&:hover {
 		background-color: $main_color;
 		color: white;
+	}
+	body.dark & {
+		border: 1px solid #fff;
+		color: #fff;
+		&:hover {
+			background-color: $backgroundBlack;
+		}
 	}
 }

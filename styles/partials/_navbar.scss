@@ -1,18 +1,18 @@
 /* Navbar styles */
-.header {
-	body.darkMode & {
-		background-color: $backgroundDark;
-		border: none;
-	}
-}
+
 .navbar {
 	position: fixed;
 	top: 0;
 	width: 100%;
 	background-color: white;
 	z-index: 1000;
+	transition: 0.3s ease all;
 	@media screen and (min-width: 769px) {
 		border-top: solid 3px $main_color;
+	}
+	body.dark & {
+		background-color: $backgroundDark;
+		border-top: solid 3px $backgroundBlack;
 	}
 }
 .navbar__icons {
@@ -28,7 +28,7 @@
 		width: 40%;
 		border: 1px solid #572ee5;
 		border-radius: 24px;
-		body.darkMode & {
+		body.dark & {
 			border: 1px solid #fff;
 		}
 		&__input {
@@ -42,8 +42,8 @@
 				width: 100%;
 				border: none;
 				outline: none;
-				body.darkMode & {
-					color: #9cafc3;
+				body.dark & {
+					color: #fff;
 					background-color: transparent;
 				}
 			}
@@ -70,12 +70,14 @@
 	animation-name: showMenu;
 	animation-duration: 0.5s;
 	animation-timing-function: ease-out;
+	transition: 0.3s ease all;
+	body.dark & {
+		background-color: $backgroundBlack;
+		opacity: 1;
+	}
 	&__list {
 		list-style: none;
 		margin-top: 2.9%;
-		body.darkMode & {
-			background-color: $backgroundBlack;
-		}
 		&__link {
 			line-height: 3.75rem;
 			position: relative;
@@ -83,7 +85,7 @@
 			font-family: "Montserrat", sans-serif;
 			font-weight: 600;
 			color: #ffffff;
-			body.darkMode & {
+			body.dark & {
 				color: white;
 			}
 			// This creates a short border for each link on the menu
@@ -132,6 +134,9 @@
 			color: grey;
 			border: none;
 		}
+		body.dark & {
+			color: #fff;
+		}
 	}
 	#createGif-btn {
 		padding: 0.9375rem;
@@ -140,12 +145,23 @@
 		border: 1px solid $main_color;
 		border-radius: 50px;
 		cursor: pointer;
+		transition: 0.3s ease all;
 		&:hover {
 			background-color: $main_color;
 		}
 		&:active {
 			background-color: $lightGray;
 			border: none;
+		}
+		body.dark & {
+			border: 1px solid #fff;
+			&:hover {
+				background-color: #fff;
+			}
+			&:active {
+				background-color: #9cafc3;
+				border: none;
+			}
 		}
 	}
 }

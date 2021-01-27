@@ -12,7 +12,8 @@
 body {
 	font-family: $text_font;
 	color: $main_color;
-	&.darkMode {
+	transition: 0.3s ease all;
+	&.dark {
 		background-color: $backgroundDark;
 		color: #fff;
 	}
