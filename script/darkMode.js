@@ -4,8 +4,10 @@ $mobileDarkModeToggle.addEventListener("click", () => {
 	// Sets the local storage value for dark mode enabled or not
 	if (document.body.classList.contains("dark")) {
 		localStorage.setItem("dark-mode", "true");
+		changeIconsToDark();
 	} else {
 		localStorage.setItem("dark-mode", "false");
+		changeIconsToLight();
 	}
 });
 
