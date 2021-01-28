@@ -31,22 +31,23 @@ function showMenu() {
 
 // This function switches between the burger menu icon and the button close icon
 function changeBurgerMenu() {
-	if (
-		burgerMenu.src === "https://gif-os.netlify.app/assets/mobile/burger.svg" ||
-		burgerMenu.src ===
+	if (localStorage.getItem("dark-mode") === "true") {
+		if (
+			burgerMenu.src ===
 			"https://gif-os.netlify.app/assets/mobile/burger-dark.svg"
-	) {
-		if (localStorage.getItem("dark-mode") === "true") {
+		) {
 			burgerMenu.src =
 				"https://gif-os.netlify.app/assets/mobile/button-close-dark.svg";
 		} else {
 			burgerMenu.src =
-				"https://gif-os.netlify.app/assets/mobile/button-close.svg";
+				"https://gif-os.netlify.app/assets/mobile/burger-dark.svg";
 		}
 	} else {
-		if (localStorage.getItem("dark-mode") === "true") {
+		if (
+			burgerMenu.src === "https://gif-os.netlify.app/assets/mobile/burger.svg"
+		) {
 			burgerMenu.src =
-				"https://gif-os.netlify.app/assets/mobile/burger-dark.svg";
+				"https://gif-os.netlify.app/assets/mobile/button-close.svg";
 		} else {
 			burgerMenu.src = "https://gif-os.netlify.app/assets/mobile/burger.svg";
 		}
@@ -369,11 +370,11 @@ function showTrendingGifs(json, i) {
 		let isFavHidden = $favouriteSection.classList.contains("hidden");
 		if (!isFavHidden) {
 			addToFavourites(json.images.downsized.url, json.title, json.username);
-			changeFavIcon(`fav${i}`, json.images.downsized.url);
+			changeHoverIcon(`fav${i}`, json.images.downsized.url);
 			displayFavourites();
 		} else {
 			addToFavourites(json.images.downsized.url, json.title, json.username);
-			changeFavIcon(`fav${i}`, json.images.downsized.url);
+			changeHoverIcon(`fav${i}`, json.images.downsized.url);
 		}
 	});
 }
@@ -440,7 +441,7 @@ function maximizeGif(src, user, title, index) {
 		const isFav = favArray.some((el) => el.gif === src);
 		// Check if gif is favourite or not and renders the icons
 		if (isFav) {
-			if (localStorage.getItem("dark-mode")) {
+			if (localStorage.getItem("dark-mode") === "true") {
 				$maxIcons.innerHTML = `
 				<img src="assets/mobile/icon-fav-active-dark.svg" alt="add to favourite" id="maxFav-icon${index}"/>
 				<img src="./assets/mobile/icon-download-dark.svg" alt="download gif" id="download-btn${index}"/>
@@ -452,7 +453,7 @@ function maximizeGif(src, user, title, index) {
 				`;
 			}
 		} else {
-			if (localStorage.getItem("dark-mode")) {
+			if (localStorage.getItem("dark-mode") === "true") {
 				$maxIcons.innerHTML = `
 			<img src="assets/mobile/icon-fav-hover-dark.svg" alt="add to favourite" id="maxFav-icon${index}"/>
 			<img src="./assets/mobile/icon-download-dark.svg" alt="download gif" id="download-btn${index}"/>
@@ -465,7 +466,7 @@ function maximizeGif(src, user, title, index) {
 			}
 		}
 	} else {
-		if (localStorage.getItem("dark-mode")) {
+		if (localStorage.getItem("dark-mode") === "true") {
 			$maxIcons.innerHTML = `
 			<img src="assets/mobile/icon-fav-hover-dark.svg" alt="add to favourite" id="maxFav-icon${index}"/>
 			<img src="./assets/mobile/icon-download-dark.svg" alt="download gif" id="download-btn${index}"/>
@@ -497,12 +498,12 @@ function maximizeGif(src, user, title, index) {
 		if (!isFavHidden) {
 			addToFavourites(src, title, user);
 			changeFavIcon(`maxFav-icon${index}`, src);
-			changeHoverIcon(index, src);
+			changeHoverIcon(`fav${index}`, src);
 			displayFavourites();
 		} else {
 			addToFavourites(src, title, user);
 			changeFavIcon(`maxFav-icon${index}`, src);
-			changeHoverIcon(index, src);
+			changeHoverIcon(`fav${index}`, src);
 		}
 	});
 }
@@ -571,16 +572,24 @@ function removeFavourite(obj) {
 function changeFavIcon(id, url) {
 	let tag = document.getElementById(id);
 	const isFav = favArray.some((el) => el.gif === url);
-	if (isFav) {
-		tag.src = "assets/mobile/icon-fav-active.svg";
+	if (localStorage.getItem("dark-mode") === "true") {
+		if (isFav) {
+			tag.src = "assets/mobile/icon-fav-active-dark.svg";
+		} else {
+			tag.src = "assets/mobile/icon-fav-hover-dark.svg";
+		}
 	} else {
-		tag.src = "assets/mobile/icon-fav-hover.svg";
+		if (isFav) {
+			tag.src = "assets/mobile/icon-fav-active.svg";
+		} else {
+			tag.src = "assets/mobile/icon-fav-hover.svg";
+		}
 	}
 }
 
 // Changes the fav icon on the hover when clicked on maximized gif
 function changeHoverIcon(index, src) {
-	let iconTag = document.getElementById(`fav${index}`);
+	let iconTag = document.getElementById(index);
 	const isFav = favArray.some((el) => el.gif === src);
 	if (isFav) {
 		iconTag.src = "assets/mobile/icon-fav-active.svg";
@@ -710,10 +719,17 @@ function maximizeFavGif(src, user, title, index) {
 	// Check if gif is favourite or not and renders the icons
 	const isFav = favArray.some((el) => el.gif === src);
 
-	$maxIcons.innerHTML = `
+	if (localStorage.getItem("dark-mode") === "true") {
+		$maxIcons.innerHTML = `
+		<img src="assets/mobile/icon_trash-dark.svg" alt="add to favourite" id="trash-icon${index}"/>
+		<img src="./assets/mobile/icon-download-dark.svg" alt="download gif" id="download-btn${index}"/>
+		`;
+	} else {
+		$maxIcons.innerHTML = `
 		<img src="assets/mobile/icon_trash.svg" alt="add to favourite" id="trash-icon${index}"/>
 		<img src="./assets/mobile/icon-download.svg" alt="download gif" id="download-btn${index}"/>
 		`;
+	}
 
 	// Display maximized gif
 	$maxGifSection.classList.add("maximized-container");

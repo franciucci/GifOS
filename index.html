@@ -117,7 +117,7 @@
 			<!-- FINISH HERO SECTION -->
 
 			<!-- STARTS SEARCH BAR SECTION -->
-			<section class="searchBar">
+			<div class="searchBar">
 				<div class="search-bar" id="search-bar">
 					<div class="search-bar__input">
 						<img
@@ -150,7 +150,7 @@
 						<ul class="search-bar__suggestion__list" id="suggestion-list"></ul>
 					</div>
 				</div>
-			</section>
+			</div>
 			<!-- FINISH SEARCH BAR SECTION -->
 
 			<!-- STARTS TRENDING TAGS SECTION -->
@@ -208,7 +208,11 @@
 				<img src="assets/mobile/icon-mis-gifos.svg" alt="mi gifos icon" />
 				<h2 class="miGifos__title">Mis GIFOS</h2>
 				<div class="miGifos__empty hidden" id="miGifos__empty">
-					<img class="miGifos__empty__img" src="assets/mobile/icon-mis-gifos-sin-contenido.svg" alt="icon mi gifos">
+					<img
+						class="miGifos__empty__img"
+						src="assets/mobile/icon-mis-gifos-sin-contenido.svg"
+						alt="icon mi gifos"
+					/>
 					<h3>¡Anímate a crear tu primer GIFO!</h3>
 				</div>
 				<div class="miGifos__gifs">
@@ -251,81 +255,110 @@
 
 			<!-- START CREATE GIFOS -->
 			<section class="crearGif hidden" id="createGifSection">
-
 				<div class="crearGif__container">
-		
 					<!-- cámara -->
 					<div class="crearGif__camara">
-						<img id="camera" src="assets/mobile/camara.svg" alt="cámara filmadora ilustrativa">
-						<img class="path" id="path" src="assets/mobile/element-luz-camara.svg" alt="luz de camara filmadora">
+						<img
+							id="camera"
+							src="assets/mobile/camara.svg"
+							alt="cámara filmadora ilustrativa"
+						/>
+						<img
+							class="path"
+							id="path"
+							src="assets/mobile/element-luz-camara.svg"
+							alt="luz de camara filmadora"
+						/>
 					</div>
-		
+
 					<!-- recuadro de grabación -->
 					<div class="crearGif__recordingZone">
-		
 						<!-- bordes para estilos -->
 						<div class="corner top--left"></div>
 						<div class="corner top--right"></div>
 						<div class="corner bottom--left"></div>
 						<div class="corner bottom--right"></div>
-		
-		
+
 						<!-- recuadro de grabación -->
 						<div class="crearGif__recordingZone__content">
-		
 							<!-- TIENE HIDDEN -->
-							<h3 class="crearGif__title" id="crearGif_title">Aquí podrás <br> crear tus propios <span
-									class="aqua-text">GIFOS</span> </h3>
+							<h3 class="crearGif__title" id="crearGif_title">
+								Aquí podrás <br />
+								crear tus propios <span class="aqua-text">GIFOS</span>
+							</h3>
 							<!-- TIENE HIDDEN -->
-							<p class="crearGif__text" id="crearGif_text">¡Crea tu GIFO en solo 3 pasos! <br> (solo necesitas
-								una
-								cámara para grabar un video)</p>
-		
+							<p class="crearGif__text" id="crearGif_text">
+								¡Crea tu GIFO en solo 3 pasos! <br />
+								(solo necesitas una cámara para grabar un video)
+							</p>
+
 							<!-- PARA QUE EL VIDEO SE ACOMODE ACA MIENTRAS GRABA -->
-		
-							<video class="recording_video hidden" src="" id="recording_video"></video>
-		
+
+							<video
+								class="recording_video hidden"
+								id="recording_video"
+							></video>
+
 							<!-- VER SI CONVIENE METER EL GIF DESDE ACA O HACER UNA FUNCION DE TEMPLATE -->
-							<img class="recorded_video hidden" src="" id="recorded_gifo" ></img>
-		
+							<img
+								class="recorded_video hidden"
+								src=""
+								alt=""
+								id="recorded_gifo"
+							/>
+
 							<!--  TIENE HIDDEN  -->
 							<div class="overlay" id="overlay">
-		
-								<div class="overlay__status-container" id="overlay-status-container">
-									<img src="assets/mobile/loader.svg" class="overlay__status-icon" alt="loading gifo"
-										id="overlay_status-icon">
-									<p class="overlay__status-text" id="overlay_status-text">Estamos subiendo tu GIFO</p>
+								<div
+									class="overlay__status-container"
+									id="overlay-status-container"
+								>
+									<img
+										src="assets/mobile/loader.svg"
+										class="overlay__status-icon"
+										alt="loading gifo"
+										id="overlay_status-icon"
+									/>
+									<p class="overlay__status-text" id="overlay_status-text">
+										Estamos subiendo tu GIFO
+									</p>
 								</div>
-		
 							</div>
-		
-		
-		
 						</div>
 					</div>
 					<!-- celuloide -->
-		
+
 					<div class="crearGif__celluloidFilm">
-						<img class="celuloide" id="celuloide" src="assets/mobile/pelicula.svg" alt="celuloide ilustracion">
+						<img
+							class="celuloide"
+							id="celuloide"
+							src="assets/mobile/pelicula.svg"
+							alt="celuloide ilustracion"
+						/>
 					</div>
-		
 				</div>
-		
+
 				<div class="pagination">
 					<p class="step" id="step-1">1</p>
 					<p class="step" id="step-2">2</p>
 					<p class="step" id="step-3">3</p>
 				</div>
-		
-		
+
 				<div class="timer">
-					<p class="timer__recorder timer__text hidden" id="timer-recording">00:00:00</p>
-					<a href="" class="timer__repeatShot timer__text hidden" id="repeatShot">REPETIR CAPTURA</a>
+					<p class="timer__recorder timer__text hidden" id="timer-recording">
+						00:00:00
+					</p>
+					<a
+						href=""
+						class="timer__repeatShot timer__text hidden"
+						id="repeatShot"
+						>REPETIR CAPTURA</a
+					>
 				</div>
-		
+
 				<!-- linea decorativa -->
-				<hr class="border">
-		
+				<hr class="border" />
+
 				<!-- botones -->
 				<div class="button__container">
 					<a class="button" id="button--comenzar">COMENZAR</a>
@@ -334,7 +367,7 @@
 					<a class="button" id="button--subirGif">SUBIR GIFO</a>
 				</div>
 			</section>
-			
+
 			<!-- FINISH CREATE GIFOS -->
 
 			<!-- STARTS SOCIAL FOOTER -->
@@ -345,7 +378,7 @@
 					<i class="fab fa-twitter social-icon"></i>
 					<i class="fab fa-instagram social-icon"></i>
 				</div>
-				<p class="social__text">&copy GIFOS 2020 All Rights Reserved.</p>
+				<p class="social__text">&copy; GIFOS 2020 All Rights Reserved.</p>
 			</footer>
 			<!-- FINISH SOCIAL FOOTER -->
 		</main>
@@ -374,8 +407,8 @@
 		<!-- SCRIPTS -->
 		<script src="https://www.WebRTC-Experiment.com/RecordRTC.js"></script>
 		<script src="script/variables.js"></script>
-		<script src="script/darkMode.js"></script>
 		<script src="script/main.js"></script>
+		<script src="script/darkMode.js"></script>
 		<!-- <script src="script/darkMode.js"></script> -->
 	</body>
 </html>
